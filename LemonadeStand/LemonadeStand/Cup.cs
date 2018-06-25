@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    public class Budget
+    public class Cup
     {
-        public List<Price> prices; 
+        public double price;
+        public int quantity;
+
     }
 }

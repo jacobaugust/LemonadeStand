@@ -8,5 +8,8 @@ namespace LemonadeStand
 {
     class Store
     {
+        Inventory inventory;
+        public int cupsSold;
+        Customer customer;
     }
 }
