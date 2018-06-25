@@ -23,6 +23,7 @@ namespace LemonadeStand
         public Game()
         {
             player = new Player();
+            weather = new Weather();
             oneWeek = 7;
         }
 
