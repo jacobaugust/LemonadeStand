@@ -17,7 +17,11 @@ namespace LemonadeStand
 
         public Weather()
         {
-            
+            TemperatureGeneration();
+            ForecastWeatherConditionRoll();
+            ForecastWeather();
+            ActualWeatherConditionRoll();
+            ActualWeather();
         }
 
         public void TemperatureGeneration()

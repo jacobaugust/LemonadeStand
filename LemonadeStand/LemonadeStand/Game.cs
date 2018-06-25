@@ -68,11 +68,9 @@ namespace LemonadeStand
 
 
         //weather simulation//get weather
-        public void WeatherGather()
-        {
-            weather.WeatherGeneration();
-        }
+        
         //display day number// display weather (temperature and forecast)//
+
         void DaySet()
         {
             switch (oneWeek)
@@ -106,7 +104,7 @@ namespace LemonadeStand
         }
         public void DayStart()
         {
-            Console.WriteLine("" + dayOfWeek + "\n\n The Forecast calls for:\n" + "" + weather.forecast + "");
+            Console.WriteLine("" + dayOfWeek + "\n\n The Forecast calls for:\n" + "" + weather.forecastWeather + "");
         }
         //Inventory Purchases
         //Cups
