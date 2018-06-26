@@ -12,13 +12,21 @@ namespace LemonadeStand
         Sugar sugar;
         Lemons lemons;
         Cup cup;
-        int capacityInCups;
-        int lemonsInPitcher;
-        int sugarCubesUsedInPitcher;
-        int iceCubesUsedInPitcher;
+        Player player;
+        int cupsPerPitcher;
+        int sugarPerPitcher;
+        int icePerPitcher;
+        int lemonsPerPitcher;
+        
 
-        public Pitcher()
+        public Pitcher(Player player)
         {
+            this.player = player;
+            cupsPerPitcher = 8;
+            sugarPerPitcher = player.sugarParts;
+            icePerPitcher = player.iceParts;
+            lemonsPerPitcher = player.lemonParts;
+
 
         }
     }

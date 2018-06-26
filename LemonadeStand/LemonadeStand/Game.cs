@@ -16,6 +16,8 @@ namespace LemonadeStand
         Ingredient ingredient;
         Expenses expenses;
         Sales sales;
+        Pitcher pitcher;
+        Day day;
         int oneWeek;
         string gameEnd;
         string dayOfWeek;
@@ -28,6 +30,7 @@ namespace LemonadeStand
             inventory = new Inventory(player);
             sales = new Sales(player);
             expenses = new Expenses(player);
+            pitcher = new Pitcher(player);
             oneWeek = 7;
         }
 
