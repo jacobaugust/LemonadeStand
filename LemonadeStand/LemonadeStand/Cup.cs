@@ -9,7 +9,15 @@ namespace LemonadeStand
     public class Cup
     {
         public double price;
-        public int quantity;
+        
 
+        public Cup()
+        {
+            price = 0.05;
+            
+
+        }
+
+        
     }
 }

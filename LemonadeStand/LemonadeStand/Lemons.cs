@@ -8,8 +8,12 @@ namespace LemonadeStand
 {
     public class Lemons : Ingredient
     {
-        double price;
-        int quantity;
+        public double price;
+       
 
+        public Lemons()
+        {
+            price = 0.25;
+        }
     }
 }

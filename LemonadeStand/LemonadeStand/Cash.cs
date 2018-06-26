@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Price
+    class Cash
     {
+        public double balance;
+        
+
+        public Cash()
+        {
+            balance = 20.00;
+        }
+
 
     }
 }

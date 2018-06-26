@@ -11,10 +11,11 @@ namespace LemonadeStand
         Weather weather;
         Player player;
         Recipe recipe;
-        Store store;
         Inventory inventory;
         Cup cup;
         Ingredient ingredient;
+        Expenses expenses;
+        Sales sales;
         int oneWeek;
         string gameEnd;
         string dayOfWeek;
@@ -24,6 +25,9 @@ namespace LemonadeStand
         {
             player = new Player();
             weather = new Weather();
+            inventory = new Inventory(player);
+            sales = new Sales(player);
+            expenses = new Expenses(player);
             oneWeek = 7;
         }
 
@@ -111,6 +115,10 @@ namespace LemonadeStand
         //lemons
         //sugar
         //Ice cubes
+        public void PurchaseInventoryIntro()
+        {
+            Console.WriteLine("Purchase all your inventory items:\n\nCups\nLemons\nSugar\nIce\n\nRemember to take weather into consideration./n/nYour cash balance is:\n\n"+ player.cashBalance +"");
+        }
         public void GetCups()
         {
             player.CupsPurchase();
@@ -127,7 +135,11 @@ namespace LemonadeStand
         {
             player.IcePurchase();
         }
-
+        //Cash Balance Update
+        public void NewCashBalanceUpdate()
+        {
+            Console.WriteLine("Your cash balance is now:\n\n" + player.cashBalance + "");
+        }
         //Recipe set
         //lemons
         //sugar

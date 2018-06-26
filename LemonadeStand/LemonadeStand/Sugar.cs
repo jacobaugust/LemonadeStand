@@ -8,8 +8,11 @@ namespace LemonadeStand
 {
     public class Sugar :Ingredient
     {
-        double price;
-        int quantity;
+        public double price;
 
+        public Sugar()
+        {
+            price = 0.15;
+        }
     }
 }

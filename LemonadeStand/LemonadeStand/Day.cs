@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    public class Budget
+    public class Day
     {
-        public List<Price> prices; 
     }
 }
