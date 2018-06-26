@@ -9,6 +9,7 @@ namespace LemonadeStand
     public class Customer
     {
         public int sales;
+        public int number;
 
     }
 }

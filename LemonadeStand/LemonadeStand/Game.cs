@@ -27,11 +27,11 @@ namespace LemonadeStand
         {
             player = new Player();
             weather = new Weather();
-            inventory = new Inventory(player);
-            sales = new Sales(player);
+            inventory = new Inventory(player, day);
+            sales = new Sales(player, day, expenses);
             expenses = new Expenses(player);
             pitcher = new Pitcher(player);
-            day = new Day(player);
+            day = new Day(player, weather, inventory);
             oneWeek = 7;
         }
 
@@ -144,6 +144,11 @@ namespace LemonadeStand
         {
             Console.WriteLine("Your cash balance is now:\n\n" + player.cashBalance + "");
         }
+        public void NewProfitLossUpdate()
+        {
+            player.GrossProfitOrLoss();
+            Console.WriteLine("Your Gross Profit/Loss is now:\n\n" + sales.grossProfitOrLoss + "");
+        }
         //Recipe set
         //lemons
         //sugar
@@ -175,7 +180,15 @@ namespace LemonadeStand
         //display results (daily cups sold, new money available total)
         public void DailyResult()
         {
-            
+            day.PotentialCustomersGeneration();
+            day.DemandImpactPrice();
+            day.DemandImpactTemp();
+            day.DemandImpactWeatherConditions();
+            day.DemandImpactIce();
+            day.DemandImpactSugar();
+            day.DemandImpactLemons();
+            NewProfitLossUpdate();
+            NewCashBalanceUpdate();
         }
 
         //update inventory

@@ -6,20 +6,28 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Sales
+    public class Sales
     {
         public double totalRevenue;
+        public double grossProfitOrLoss;
+        Expenses expenses;
         Customer customer;
         Player player;
+        Day day;
 
-        public Sales(Player player)
+
+        public Sales(Player player, Day day, Expenses expenses)
         {
             this.player = player;
+            this.day = day;
+            this.expenses = expenses;
+            TotalRevenue();
         }
 
         public void TotalRevenue()
         {
-            totalRevenue = customer.sales * player.lemonadePrice;
+            totalRevenue = day.cupsSold * player.lemonadePrice;
+
         }
     }
 }

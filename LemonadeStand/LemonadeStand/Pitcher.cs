@@ -13,10 +13,10 @@ namespace LemonadeStand
         Lemons lemons;
         Cup cup;
         Player player;
-        int cupsPerPitcher;
-        int sugarPerPitcher;
-        int icePerPitcher;
-        int lemonsPerPitcher;
+        public int cupsPerPitcher;
+        public int sugarPerPitcher;
+        public int icePerPitcher;
+        public int lemonsPerPitcher;
         
 
         public Pitcher(Player player)

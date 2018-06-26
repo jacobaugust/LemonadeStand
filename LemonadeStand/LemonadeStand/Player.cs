@@ -26,7 +26,7 @@ namespace LemonadeStand
         public int sugarParts;
         public int iceParts;
         public double lemonadePrice;
-
+        public double grossProfitOrLoss;
 
         public Player()
         {
@@ -77,7 +77,7 @@ namespace LemonadeStand
         public void IceParts()
         {
             Console.WriteLine("How many ice cubes would you like to use in your pitcher recipe?");
-            lemonParts = Convert.ToInt32(Console.ReadLine());
+            iceParts = Convert.ToInt32(Console.ReadLine());
         }
         //Pricing Set
         public void PriceSet()
@@ -85,5 +85,10 @@ namespace LemonadeStand
             Console.WriteLine("How much would you like to charge for your lemonade (enter price as shown i.e. 0.30 for thirty cents)?");
             lemonadePrice = Convert.ToInt32(Console.ReadLine());
         }
+        public void GrossProfitOrLoss()
+        {
+            grossProfitOrLoss = sales.totalRevenue - expenses.totalExpenses;
+        }
+        
     }
 }

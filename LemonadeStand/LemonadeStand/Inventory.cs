@@ -8,34 +8,36 @@ namespace LemonadeStand
 {
     public class Inventory
     {
-        int iceCubesOnHand;
-        int iceCubeBagsOnHand;
-        int sugarCubesOnHand;
-        int lemonsOnHand;
-        int cupsOnHand;
+        public int iceCubesOnHand;
+        public int iceCubeBagsOnHand;
+        public int sugarCubesOnHand;
+        public int lemonsOnHand;
+        public int cupsOnHand;
         Player player;
+        Day day;
 
-        public Inventory(Player player)
+        public Inventory(Player player, Day day)
         {
             this.player = player;
+            this.day = day;
         }
 
         public void IceOnHand()
         {
-            iceCubeBagsOnHand = player.iceCubeBagsPurchased - player.bagsOfIceUsed;
-            iceCubesOnHand = player.iceCubesPurchased - player.cubesOfIceUsed;
+            iceCubeBagsOnHand = player.iceCubeBagsPurchased - day.bagsOfIceUsed;
+            iceCubesOnHand = player.iceCubesPurchased - day.iceCubesUsed;
         }
         public void LemonOnHand()
         {
-            lemonsOnHand = player.lemonsPurchased - player.lemonsUsed;
+            lemonsOnHand = player.lemonsPurchased - day.lemonsUsed;
         }
         public void SugarOnHand()
         {
-            sugarCubesOnHand = player.sugarPurchased - player.sugarUsed;
+            sugarCubesOnHand = player.sugarPurchased - day.sugarUsed;
         }
         public void CupsOnHand()
         {
-            cupsOnHand = player.cupsPurchased - player.cupsUsed;
+            cupsOnHand = player.cupsPurchased - day.cupsUsed;
         }
     }
 
