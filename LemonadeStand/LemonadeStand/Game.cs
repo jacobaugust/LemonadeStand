@@ -31,6 +31,7 @@ namespace LemonadeStand
             sales = new Sales(player);
             expenses = new Expenses(player);
             pitcher = new Pitcher(player);
+            day = new Day(player);
             oneWeek = 7;
         }
 

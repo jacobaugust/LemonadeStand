@@ -91,22 +91,22 @@ namespace LemonadeStand
             switch (numberSelectionThree)
             {
                 case 1:
-                    forecastCondition = "overcast";
+                    actualCondition = "overcast";
                     break;
                 case 2:
-                    forecastCondition = "cloudy";
+                    actualCondition = "cloudy";
                     break;
                 case 3:
-                    forecastCondition = "rain";
+                    actualCondition = "rain";
                     break;
                 case 4:
-                    forecastCondition = "hot";
+                    actualCondition = "hot";
                     break;
                 case 5:
-                    forecastCondition = "hazy";
+                    actualCondition = "hazy";
                     break;
                 case 6:
-                    forecastCondition = "muggy";
+                    actualCondition = "muggy";
                     break;
                 default:
                     break;
