@@ -18,8 +18,8 @@ namespace LemonadeStand
         Sales sales;
         Pitcher pitcher;
         Day day;
+        Customer customer;
         int oneWeek;
-        string gameEnd;
         string dayOfWeek;
 
 
@@ -31,7 +31,8 @@ namespace LemonadeStand
             sales = new Sales(player, day, expenses);
             expenses = new Expenses(player);
             pitcher = new Pitcher(player);
-            day = new Day(player, weather, inventory);
+            customer = new Customer();
+            day = new Day(player, weather, inventory, pitcher, customer);
             oneWeek = 7;
         }
 
@@ -54,10 +55,7 @@ namespace LemonadeStand
                 }
 
 
-
-
-
-                DayStart();
+                DaySet();
 
             }
 
@@ -70,7 +68,7 @@ namespace LemonadeStand
         public void GameIntroduction()
         {
             Console.WriteLine("Welcome to the Lemonade Stand\n\nA simulation in entrepreneurship. Your goal is to make as much money as possible.\n\nYou have control over all aspects of your lemonade stand. This includes:\n\nPricing\nRecipes\nInventory Management\nPurchasing Supplies\nAnd navigating various weather conditions\n\nPut together the right mix of these factors on the right days and you will maximize your profits!");
-
+            GameCounter();
         }
 
 
@@ -109,10 +107,12 @@ namespace LemonadeStand
                     break;
 
             }
+            DayStart();
         }
         public void DayStart()
         {
             Console.WriteLine("" + dayOfWeek + "\n\n The Forecast calls for:\n" + "" + weather.forecastWeather + "");
+            PurchaseInventoryIntro();
         }
         //Inventory Purchases
         //Cups
@@ -123,22 +123,14 @@ namespace LemonadeStand
         {
             Console.WriteLine("Purchase all your inventory items:\n\nCups\nLemons\nSugar\nIce\n\nRemember to take weather into consideration./n/nYour cash balance is:\n\n"+ player.cashBalance +"");
         }
-        public void GetCups()
+        public void GetInventory()
         {
             player.CupsPurchase();
-        }
-        public void GetLemons()
-        {
             player.LemonsPurchase();
-        }
-        public void GetSugar()
-        {
             player.SugarPurchase();
-        }
-        public void GetIce()
-        {
             player.IcePurchase();
         }
+        
         //Cash Balance Update
         public void NewCashBalanceUpdate()
         {
@@ -147,7 +139,7 @@ namespace LemonadeStand
         public void NewProfitLossUpdate()
         {
             player.GrossProfitOrLoss();
-            Console.WriteLine("Your Gross Profit/Loss is now:\n\n" + sales.grossProfitOrLoss + "");
+            Console.WriteLine("Your Gross Profit/Loss is now:\n\n"+ sales.grossProfitOrLoss + "");
         }
         //Recipe set
         //lemons
@@ -178,7 +170,7 @@ namespace LemonadeStand
         }
 
         //display results (daily cups sold, new money available total)
-        public void DailyResult()
+        public void DailyRun()
         {
             day.PotentialCustomersGeneration();
             day.DemandImpactPrice();
@@ -187,8 +179,14 @@ namespace LemonadeStand
             day.DemandImpactIce();
             day.DemandImpactSugar();
             day.DemandImpactLemons();
+            day.CupCheck();
+            day.PitcherCheck();
+            day.LemonCheck();
+            day.IceCheck();
+            day.SugarCheck();
             NewProfitLossUpdate();
             NewCashBalanceUpdate();
+            NewProfitLossUpdate();
         }
 
         //update inventory
@@ -197,7 +195,7 @@ namespace LemonadeStand
 
         public void GameEndDisplay()
         {
-
+            Console.WriteLine("Your ending Profits/Losses are:\n\n"+ sales.grossProfitOrLoss + "");
         }
 
 

@@ -12,7 +12,8 @@ namespace LemonadeStand
         Weather weather;
         Inventory inventory;
         Pitcher pitcher;
-        public double potentialCustomers;
+        Customer customer;
+        
         public double cupsSold;
         public int bagsOfIceUsed;
         public int iceCubesUsed;
@@ -24,17 +25,29 @@ namespace LemonadeStand
         public Day(Player player, Weather weather, Inventory inventory, Pitcher pitcher)
         {
             this.player = player;
-            PotentialCustomersGeneration();
+            customer.PotentialCustomersGeneration();
             this.weather = weather;
             this.inventory = inventory;
-            pitcher = new Pitcher(player);
-            
+            this.pitcher = pitcher;
+            customer = new Customer(player, weather);
+
         }
 
-        public void PotentialCustomersGeneration()
+        public void PotentialCustomersListGeneration()
         {
-            Random rnd = new Random();
-            potentialCustomers = rnd.Next(80, 121);
+            List<Customer> customers = new List<Customer>();
+            for (int i = 0; i < customer.potentialCustomers; i++)
+            {
+                customers.Add(new Customer(player, weather));
+                customers[i].DemandImpactPrice();
+                customers[i].DemandImpactTemp();
+                customers[i].DemandImpactWeatherConditions();
+                customers[i].DemandImpactIce();
+                customers[i].DemandImpactLemons();
+                customers[i].DemandImpactSugar();
+            }
+                
+                
 
         }
         public void DemandImpactPrice()
@@ -147,7 +160,12 @@ namespace LemonadeStand
             cupsUsed = Convert.ToInt32(cupsSold);
             if (inventory.cupsOnHand <= Convert.ToInt32(cupsSold))
             {
+                cupsUsed = inventory.cupsOnHand / pitcher.cupsPerPitcher;
                 cupsSold = inventory.cupsOnHand;
+            }
+            else
+            {
+                cupsUsed = Convert.ToInt32(cupsSold);
             }
         }
         public void PitcherCheck()
