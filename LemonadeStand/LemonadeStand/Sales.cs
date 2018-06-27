@@ -16,11 +16,8 @@ namespace LemonadeStand
         Day day;
 
 
-        public Sales(Player player, Day day, Expenses expenses)
+        public Sales()
         {
-            this.player = player;
-            this.day = day;
-            this.expenses = expenses;
             TotalRevenue();
         }
 

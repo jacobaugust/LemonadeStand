@@ -30,6 +30,8 @@ namespace LemonadeStand
 
         public Player()
         {
+            expenses = new Expenses();
+            sales = new Sales();
             ice = new Ice();
             cash = new Cash();
             
@@ -40,27 +42,33 @@ namespace LemonadeStand
         {
             Console.WriteLine("Cups cost $0.05.\n\nHow many cups would you like to buy?");
             cupsPurchased = Convert.ToInt32(Console.ReadLine());
+            expenses.CupsPurchases(cupsPurchased);
         }
         public void LemonsPurchase()
         {
             Console.WriteLine("Lemons cost $0.25.\n\nHow many lemons would you like to buy?");
             lemonsPurchased = Convert.ToInt32(Console.ReadLine());
+            expenses.LemonPurchases(lemonsPurchased);
         }
         public void SugarPurchase()
         {
             Console.WriteLine("Sugar cubes cost $0.15 a cube.\n\nHow many sugar cubes would you like to buy?");
             sugarPurchased = Convert.ToInt32(Console.ReadLine());
+            expenses.SugarPurchases(sugarPurchased);
         }
         public void IcePurchase()
         {
             Console.WriteLine("Ice costs $3.00 a bag and each bag contains 150 cubes of ice.\n\nHow many bags of ice would you like to buy?");
             iceCubeBagsPurchased = Convert.ToInt32(Console.ReadLine());
+            expenses.IcePurchases(iceCubeBagsPurchased);
             iceCubesPurchased = iceCubeBagsPurchased * ice.iceCubesInBag;
             
         }
         //Cash Balance
         public void GetCashBalance()
         {
+            expenses.TotalExpenses();
+            sales.TotalRevenue();
             try
             {
                 cashBalance = (cash.balance - expenses.totalExpenses) + (sales.totalRevenue);

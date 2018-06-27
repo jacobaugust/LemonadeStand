@@ -29,8 +29,6 @@ namespace LemonadeStand
             player = new Player();
             weather = new Weather();
             inventory = new Inventory(player, day);
-            sales = new Sales(player, day, expenses);
-            expenses = new Expenses(player);
             pitcher = new Pitcher(player);
             customer = new Customer(player, weather);
             recipe = new Recipe(player);
@@ -124,7 +122,7 @@ namespace LemonadeStand
         public void PurchaseInventoryIntro()
         {
             player.GetCashBalance();
-            Console.WriteLine("Purchase all your inventory items:\n\nCups\nLemons\nSugar\nIce\n\nRemember to take weather into consideration.\n\nYour cash balance is:\n\n" + player.cashBalance + "");
+            Console.WriteLine("Purchase all your inventory items:\n\nCups\nLemons\nSugar\nIce\n\nRemember to take weather into consideration.\n\nYour cash balance is:\n\n$" + player.cashBalance + "\n\n");
             GetInventory();
         }
         public void GetInventory()
@@ -143,6 +141,7 @@ namespace LemonadeStand
         //Cash Balance Update
         public void NewCashBalanceUpdate()
         {
+            player.GetCashBalance();
             Console.WriteLine("Your cash balance is now:\n\n" + player.cashBalance + "");
         }
         public void NewProfitLossUpdate()

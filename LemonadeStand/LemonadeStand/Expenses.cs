@@ -19,30 +19,29 @@ namespace LemonadeStand
         Sugar sugar;
         Cup cup;
 
-        public Expenses(Player player)
+        public Expenses()
         {
-            this.player = player;
             ice = new Ice();
             lemons = new Lemons();
             sugar = new Sugar();
             cup = new Cup();
         }
 
-        public void IceDebit()
+        public void IcePurchases(int iceCubeBagsPurchased)
         {
             bagsOfIceDebit = player.iceCubeBagsPurchased * ice.bagPrice;
         }
-        public void LemonPurchases()
+        public void LemonPurchases(int lemonsPurchased)
         {
             lemonsDebit = player.lemonsPurchased * lemons.price;
         }
-        public void SugarPurchases()
+        public void SugarPurchases(int sugarPurchased)
         {
-            sugarCubesDebit = player.sugarPurchased * sugar.price;
+            sugarCubesDebit = sugarPurchased * sugar.price;
         }
-        public void cupsPurchased()
+        public void CupsPurchases(int cupsPurchased)
         {
-            cupsDebit = player.cupsPurchased * cup.price;
+            cupsDebit = cupsPurchased * cup.price;
         }
         public void TotalExpenses()
         {
