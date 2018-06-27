@@ -151,7 +151,7 @@ namespace LemonadeStand
         }
         public void NewCupsSoldUpdate()
         {
-            Console.WriteLine(""+ day.cupsSold +" cups sold today");
+            Console.WriteLine(""+ customer.cupsSold +" cups sold today");
         }
 
         //Recipe set

@@ -14,7 +14,6 @@ namespace LemonadeStand
         Pitcher pitcher;
         public Customer customer;
         public double potentialCustomers;
-        public double cupsSold;
         public int bagsOfIceUsed;
         public int iceCubesUsed;
         public int lemonsUsed;
@@ -28,7 +27,6 @@ namespace LemonadeStand
             this.weather = weather;
             this.inventory = inventory;
             this.pitcher = pitcher;
-            customer = new Customer(player, weather);
 
         }
         public void PotentialCustomersGeneration()
@@ -56,20 +54,20 @@ namespace LemonadeStand
        
         public void CupCheck()
         {
-            cupsUsed = Convert.ToInt32(cupsSold);
-            if (inventory.cupsOnHand <= Convert.ToInt32(cupsSold))
+            cupsUsed = Convert.ToInt32(customer.cupsSold);
+            if (inventory.cupsOnHand <= Convert.ToInt32(customer.cupsSold))
             {
                 cupsUsed = inventory.cupsOnHand / pitcher.cupsPerPitcher;
-                cupsSold = inventory.cupsOnHand;
+                customer.cupsSold = inventory.cupsOnHand;
             }
             else
             {
-                cupsUsed = Convert.ToInt32(cupsSold);
+                cupsUsed = Convert.ToInt32(customer.cupsSold);
             }
         }
         public void PitcherCheck()
         {
-            pitchersUsed = Convert.ToInt32(cupsSold) / pitcher.cupsPerPitcher;
+            pitchersUsed = Convert.ToInt32(customer.cupsSold) / pitcher.cupsPerPitcher;
         }
         public void LemonCheck()
         {
@@ -77,7 +75,7 @@ namespace LemonadeStand
             if(lemonsUsed > inventory.lemonsOnHand)
             {
                 pitchersUsed = inventory.lemonsOnHand / pitcher.lemonsPerPitcher;
-                cupsSold = (pitchersUsed * pitcher.cupsPerPitcher);
+                customer.cupsSold = (pitchersUsed * pitcher.cupsPerPitcher);
             }
 
         }
@@ -87,7 +85,7 @@ namespace LemonadeStand
             if (iceCubesUsed > inventory.iceCubesOnHand)
             {
                 pitchersUsed = inventory.iceCubesOnHand / pitcher.icePerPitcher;
-                cupsSold = (pitchersUsed * pitcher.cupsPerPitcher);
+                customer.cupsSold = (pitchersUsed * pitcher.cupsPerPitcher);
             }
         }
         public void SugarCheck()
@@ -96,7 +94,7 @@ namespace LemonadeStand
             if (sugarUsed > inventory.sugarCubesOnHand)
             {
                 pitchersUsed = inventory.iceCubesOnHand / pitcher.icePerPitcher;
-                cupsSold = (pitchersUsed * pitcher.cupsPerPitcher);
+                customer.cupsSold = (pitchersUsed * pitcher.cupsPerPitcher);
             }
         }
             

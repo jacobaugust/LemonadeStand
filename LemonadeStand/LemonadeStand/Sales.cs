@@ -24,7 +24,7 @@ namespace LemonadeStand
         {
             try
             {
-                totalRevenue = day.cupsSold * player.lemonadePrice;
+                totalRevenue = customer.cupsSold * player.lemonadePrice;
             }
             catch
             {
