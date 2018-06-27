@@ -12,7 +12,7 @@ namespace LemonadeStand
 
         public Sugar()
         {
-            price = 0.15;
+            price = 0.05;
         }
     }
 }

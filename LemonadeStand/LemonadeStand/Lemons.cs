@@ -13,7 +13,7 @@ namespace LemonadeStand
 
         public Lemons()
         {
-            price = 0.25;
+            price = 0.10;
         }
     }
 }

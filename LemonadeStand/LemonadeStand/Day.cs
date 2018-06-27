@@ -12,8 +12,8 @@ namespace LemonadeStand
         Weather weather;
         Inventory inventory;
         Pitcher pitcher;
-        Customer customer;
-        
+        public Customer customer;
+        public double potentialCustomers;
         public double cupsSold;
         public int bagsOfIceUsed;
         public int iceCubesUsed;
@@ -22,29 +22,34 @@ namespace LemonadeStand
         public int cupsUsed;
         public int pitchersUsed;
 
-        public Day(Player player, Weather weather, Inventory inventory, Pitcher pitcher, Customer customer)
+        public Day(Player player, Weather weather, Inventory inventory, Pitcher pitcher)
         {
             this.player = player;
-            customer.PotentialCustomersGeneration();
             this.weather = weather;
             this.inventory = inventory;
             this.pitcher = pitcher;
             customer = new Customer(player, weather);
 
         }
+        public void PotentialCustomersGeneration()
+        {
+            Random rnd = new Random();
+            potentialCustomers = rnd.Next(80, 121);
+
+        }
 
         public void PotentialCustomersListGeneration()
         {
             List<Customer> customers = new List<Customer>();
-            for (int i = 0; i < customer.potentialCustomers; i++)
+            for (int i = 0; i < potentialCustomers; i++)
             {
                 customers.Add(new Customer(player, weather));
-                customers[i].DemandImpactPrice();
-                customers[i].DemandImpactTemp();
-                customers[i].DemandImpactWeatherConditions();
-                customers[i].DemandImpactIce();
-                customers[i].DemandImpactLemons();
-                customers[i].DemandImpactSugar();
+                customers[i].DemandImpactPrice(potentialCustomers);
+                customers[i].DemandImpactTemp(potentialCustomers);
+                customers[i].DemandImpactWeatherConditions(potentialCustomers);
+                customers[i].DemandImpactIce(potentialCustomers);
+                customers[i].DemandImpactLemons(potentialCustomers);
+                customers[i].DemandImpactSugar(potentialCustomers);
             }
 
         }

@@ -12,10 +12,10 @@ namespace LemonadeStand
         Ice ice;
         Cash cash;
         Inventory inventory;
-        Recipe recipe;
         Ingredient ingredient;
         Expenses expenses;
         Sales sales;
+        Recipe recipe;
         public int cupsPurchased;
         public int sugarPurchased;
         public int lemonsPurchased;
@@ -34,31 +34,32 @@ namespace LemonadeStand
             sales = new Sales();
             ice = new Ice();
             cash = new Cash();
+            recipe = new Recipe();
             
         }
 
 
         public void CupsPurchase()
         {
-            Console.WriteLine("Cups cost $0.05.\n\nHow many cups would you like to buy?");
+            Console.WriteLine("Cups cost $0.02.\n\nHow many cups would you like to buy?");
             cupsPurchased = Convert.ToInt32(Console.ReadLine());
             expenses.CupsPurchases(cupsPurchased);
         }
         public void LemonsPurchase()
         {
-            Console.WriteLine("Lemons cost $0.25.\n\nHow many lemons would you like to buy?");
+            Console.WriteLine("Lemons cost $0.10.\n\nHow many lemons would you like to buy?");
             lemonsPurchased = Convert.ToInt32(Console.ReadLine());
             expenses.LemonPurchases(lemonsPurchased);
         }
         public void SugarPurchase()
         {
-            Console.WriteLine("Sugar cubes cost $0.15 a cube.\n\nHow many sugar cubes would you like to buy?");
+            Console.WriteLine("Sugar cubes cost $0.05 a cube.\n\nHow many sugar cubes would you like to buy?");
             sugarPurchased = Convert.ToInt32(Console.ReadLine());
             expenses.SugarPurchases(sugarPurchased);
         }
         public void IcePurchase()
         {
-            Console.WriteLine("Ice costs $3.00 a bag and each bag contains 150 cubes of ice.\n\nHow many bags of ice would you like to buy?");
+            Console.WriteLine("Ice costs $2.00 a bag and each bag contains 150 cubes of ice.\n\nHow many bags of ice would you like to buy?");
             iceCubeBagsPurchased = Convert.ToInt32(Console.ReadLine());
             expenses.IcePurchases(iceCubeBagsPurchased);
             iceCubesPurchased = iceCubeBagsPurchased * ice.iceCubesInBag;
@@ -80,6 +81,12 @@ namespace LemonadeStand
         }
 
         //Recipe Set
+        public void GetRecipe()
+        {
+            LemonParts();
+            SugarParts();
+            IceParts();
+        }
         public void LemonParts()
         {
             Console.WriteLine("How many lemons would you like to use in your pitcher recipe?");
@@ -99,7 +106,7 @@ namespace LemonadeStand
         public void PriceSet()
         {
             Console.WriteLine("How much would you like to charge for your lemonade (enter price as shown i.e. 0.30 for thirty cents)?");
-            lemonadePrice = Convert.ToInt32(Console.ReadLine());
+            lemonadePrice = Convert.ToDouble(Console.ReadLine());
         }
         public void GrossProfitOrLoss()
         {

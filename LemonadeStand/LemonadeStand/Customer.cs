@@ -8,24 +8,20 @@ namespace LemonadeStand
 {
     public class Customer
     {
-        public double potentialCustomers;
         public double cupsSold;
         Player player;
         Weather weather;
+       
 
         public Customer(Player player, Weather weather)
         {
             this.player = player;
             this.weather = weather;
+           
         }
 
-        public void PotentialCustomersGeneration()
-        {
-            Random rnd = new Random();
-            potentialCustomers = rnd.Next(80, 121);
-
-        }
-        public void DemandImpactPrice()
+        
+        public void DemandImpactPrice(double potentialCustomers)
         {
             if (player.lemonadePrice <= 0.10)
             {
@@ -44,7 +40,7 @@ namespace LemonadeStand
                 cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.05));
             }
         }
-        public void DemandImpactTemp()
+        public void DemandImpactTemp(double potentialCustomers)
         {
             if (weather.actualTemperature >= 85)
             {
@@ -59,7 +55,7 @@ namespace LemonadeStand
                 cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.05));
             }
         }
-        public void DemandImpactWeatherConditions()
+        public void DemandImpactWeatherConditions(double potentialCustomers)
         {
             switch (weather.actualCondition)
             {
@@ -77,7 +73,7 @@ namespace LemonadeStand
             }
 
         }
-        public void DemandImpactIce()
+        public void DemandImpactIce(double potentialCustomers)
         {
             if (player.iceParts >= 6)
             {
@@ -92,7 +88,7 @@ namespace LemonadeStand
                 cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.10));
             }
         }
-        public void DemandImpactSugar()
+        public void DemandImpactSugar(double potentialCustomers)
         {
             if (player.iceParts >= 8)
             {
@@ -111,7 +107,7 @@ namespace LemonadeStand
                 cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.05));
             }
         }
-        public void DemandImpactLemons()
+        public void DemandImpactLemons(double potentialCustomers)
         {
             if (player.iceParts >= 8)
             {

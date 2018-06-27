@@ -8,17 +8,12 @@ namespace LemonadeStand
 {
     class Recipe
     {
-        Player player;
-        public Recipe(Player player)
+        
+        public Recipe()
         {
-            this.player = player;
+            
         }
 
-        public void GetRecipe()
-        {
-            player.LemonParts();
-            player.SugarParts();
-            player.IceParts();
-        }
+       
     }
 }

@@ -29,11 +29,11 @@ namespace LemonadeStand
 
         public void IcePurchases(int iceCubeBagsPurchased)
         {
-            bagsOfIceDebit = player.iceCubeBagsPurchased * ice.bagPrice;
+            bagsOfIceDebit = iceCubeBagsPurchased * ice.bagPrice;
         }
         public void LemonPurchases(int lemonsPurchased)
         {
-            lemonsDebit = player.lemonsPurchased * lemons.price;
+            lemonsDebit = lemonsPurchased * lemons.price;
         }
         public void SugarPurchases(int sugarPurchased)
         {

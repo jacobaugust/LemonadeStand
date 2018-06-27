@@ -30,9 +30,7 @@ namespace LemonadeStand
             weather = new Weather();
             inventory = new Inventory(player, day);
             pitcher = new Pitcher(player);
-            customer = new Customer(player, weather);
-            recipe = new Recipe(player);
-            day = new Day(player, weather, inventory, pitcher, customer);
+            day = new Day(player, weather, inventory, pitcher);
             oneWeek = 8;
         }
 
@@ -52,6 +50,7 @@ namespace LemonadeStand
                 if (oneWeek < 1)
                 {
                     GameEndDisplay();
+                    
                 }
 
 
@@ -68,6 +67,7 @@ namespace LemonadeStand
         public void GameIntroduction()
         {
             Console.WriteLine("Welcome to the Lemonade Stand\n\nA simulation in entrepreneurship. Your goal is to make as much money as possible.\n\nYou have control over all aspects of your lemonade stand. This includes:\n\nPricing\nRecipes\nInventory Management\nPurchasing Supplies\nAnd navigating various weather conditions\n\nPut together the right mix of these factors on the right days and you will maximize your profits!\n\n");
+            Console.ReadLine();
             GameCounter();
         }
 
@@ -142,12 +142,16 @@ namespace LemonadeStand
         public void NewCashBalanceUpdate()
         {
             player.GetCashBalance();
-            Console.WriteLine("Your cash balance is now:\n\n" + player.cashBalance + "");
+            Console.WriteLine("Your cash balance is now:\n\n$" + player.cashBalance + "");
         }
         public void NewProfitLossUpdate()
         {
             player.GrossProfitOrLoss();
-            Console.WriteLine("Your Gross Profit/Loss is now:\n\n" + sales.grossProfitOrLoss + "");
+            Console.WriteLine("Your Gross Profit/Loss is now:\n\n" + player.grossProfitOrLoss + "");
+        }
+        public void NewCupsSoldUpdate()
+        {
+            Console.WriteLine(""+ day.cupsSold +" cups sold today");
         }
 
         //Recipe set
@@ -156,8 +160,9 @@ namespace LemonadeStand
         //ice cubes
         public void RecipeIntroduction()
         {
-            Console.WriteLine("Set your lemonade pitcher recipe by adding parts of the following:\n\nLemons\nSugar\nIce\n\n");
-            recipe.GetRecipe();
+            Console.WriteLine("\n\nSet your lemonade pitcher recipe by adding parts of the following:\n\nLemons\nSugar\nIce\n\n");
+            player.GetRecipe();
+            Price();
         }
 
 
@@ -165,27 +170,24 @@ namespace LemonadeStand
         public void Price()
         {
             player.PriceSet();
+            DailyRun();
         }
 
         //sales simulation (customers buy lemonade based on weather and recipe)
         //display results (daily cups sold, new money available total)
         public void DailyRun()
         {
-            customer.PotentialCustomersGeneration();
-            customer.DemandImpactPrice();
-            customer.DemandImpactTemp();
-            customer.DemandImpactWeatherConditions();
-            customer.DemandImpactIce();
-            customer.DemandImpactSugar();
-            customer.DemandImpactLemons();
+            day.PotentialCustomersGeneration();
+            day.PotentialCustomersListGeneration();
             day.CupCheck();
             day.PitcherCheck();
             day.LemonCheck();
             day.IceCheck();
             day.SugarCheck();
+            NewCupsSoldUpdate();
             NewProfitLossUpdate();
             NewCashBalanceUpdate();
-            NewProfitLossUpdate();
+            
         }
 
         //update inventory
@@ -194,11 +196,10 @@ namespace LemonadeStand
 
         public void GameEndDisplay()
         {
-            Console.WriteLine("Your ending Profits/Losses are:\n\n" + sales.grossProfitOrLoss + "");
+            Console.WriteLine("Your ending Profits/Losses are:\n\n" + player.grossProfitOrLoss + "");
             Console.ReadLine();
             Console.WriteLine("Would you like to play again press 1");
             restartOption = Console.ReadLine();
-            void RestartEnd()
             {
                 switch (restartOption)
                 {

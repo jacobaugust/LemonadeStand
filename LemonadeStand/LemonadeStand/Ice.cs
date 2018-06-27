@@ -16,7 +16,7 @@ namespace LemonadeStand
         public Ice()
         {
             cubePrice = 0.02;
-            bagPrice = 3.00;
+            bagPrice = 2.00;
             iceCubesInBag = 150;
 
 

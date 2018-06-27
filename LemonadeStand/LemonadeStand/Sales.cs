@@ -9,7 +9,6 @@ namespace LemonadeStand
     public class Sales
     {
         public double totalRevenue;
-        public double grossProfitOrLoss;
         Expenses expenses;
         Customer customer;
         Player player;
