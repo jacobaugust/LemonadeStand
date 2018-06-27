@@ -37,7 +37,7 @@ namespace LemonadeStand
             if (forecastTemperature <= 80)
             {
                 Random rnd = new Random();
-                numberSelectionTwo = rnd.Next(3);
+                numberSelectionTwo = rnd.Next(1, 4);
             }
             else 
             {

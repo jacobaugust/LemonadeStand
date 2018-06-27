@@ -26,7 +26,14 @@ namespace LemonadeStand
 
         public void TotalRevenue()
         {
-            totalRevenue = day.cupsSold * player.lemonadePrice;
+            try
+            {
+                totalRevenue = day.cupsSold * player.lemonadePrice;
+            }
+            catch
+            {
+                totalRevenue = 0.00;
+            }
 
         }
     }

@@ -32,6 +32,7 @@ namespace LemonadeStand
         {
             ice = new Ice();
             cash = new Cash();
+            
         }
 
 
@@ -60,7 +61,14 @@ namespace LemonadeStand
         //Cash Balance
         public void GetCashBalance()
         {
-            cashBalance = (cash.balance - expenses.totalExpenses) + (sales.totalRevenue);
+            try
+            {
+                cashBalance = (cash.balance - expenses.totalExpenses) + (sales.totalRevenue);
+            }
+            catch
+            {
+                cashBalance = cash.balance;
+            }
         }
 
         //Recipe Set

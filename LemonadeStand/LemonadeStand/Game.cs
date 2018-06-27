@@ -21,6 +21,7 @@ namespace LemonadeStand
         Customer customer;
         int oneWeek;
         string dayOfWeek;
+        string restartOption;
 
 
         public Game()
@@ -31,9 +32,10 @@ namespace LemonadeStand
             sales = new Sales(player, day, expenses);
             expenses = new Expenses(player);
             pitcher = new Pitcher(player);
-            customer = new Customer();
+            customer = new Customer(player, weather);
+            recipe = new Recipe(player);
             day = new Day(player, weather, inventory, pitcher, customer);
-            oneWeek = 7;
+            oneWeek = 8;
         }
 
 
@@ -41,7 +43,7 @@ namespace LemonadeStand
         public void GameCounter()
 
         {
-            for (int i = 0; i < 0; i++)
+            while (oneWeek > 0)
             {
 
                 if (oneWeek > 1)
@@ -67,39 +69,39 @@ namespace LemonadeStand
         //game introduction/rules
         public void GameIntroduction()
         {
-            Console.WriteLine("Welcome to the Lemonade Stand\n\nA simulation in entrepreneurship. Your goal is to make as much money as possible.\n\nYou have control over all aspects of your lemonade stand. This includes:\n\nPricing\nRecipes\nInventory Management\nPurchasing Supplies\nAnd navigating various weather conditions\n\nPut together the right mix of these factors on the right days and you will maximize your profits!");
+            Console.WriteLine("Welcome to the Lemonade Stand\n\nA simulation in entrepreneurship. Your goal is to make as much money as possible.\n\nYou have control over all aspects of your lemonade stand. This includes:\n\nPricing\nRecipes\nInventory Management\nPurchasing Supplies\nAnd navigating various weather conditions\n\nPut together the right mix of these factors on the right days and you will maximize your profits!\n\n");
             GameCounter();
         }
 
 
 
         //weather simulation//get weather
-        
+
         //display day number// display weather (temperature and forecast)//
 
         void DaySet()
         {
             switch (oneWeek)
             {
-                case 1:
+                case 7:
                     dayOfWeek = "Day One";
                     break;
-                case 2:
+                case 6:
                     dayOfWeek = "Day Two";
                     break;
-                case 3:
+                case 5:
                     dayOfWeek = "Day Three";
                     break;
                 case 4:
                     dayOfWeek = "Day Four";
                     break;
-                case 5:
+                case 3:
                     dayOfWeek = "Day Five";
                     break;
-                case 6:
+                case 2:
                     dayOfWeek = "Day Six";
                     break;
-                case 7:
+                case 1:
                     dayOfWeek = "Day Seven";
                     break;
                 default:
@@ -111,7 +113,7 @@ namespace LemonadeStand
         }
         public void DayStart()
         {
-            Console.WriteLine("" + dayOfWeek + "\n\n The Forecast calls for:\n" + "" + weather.forecastWeather + "");
+            Console.WriteLine("" + dayOfWeek + "\n\nThe Forecast calls for:\n" + "" + weather.forecastWeather + "\n\n");
             PurchaseInventoryIntro();
         }
         //Inventory Purchases
@@ -121,16 +123,23 @@ namespace LemonadeStand
         //Ice cubes
         public void PurchaseInventoryIntro()
         {
-            Console.WriteLine("Purchase all your inventory items:\n\nCups\nLemons\nSugar\nIce\n\nRemember to take weather into consideration./n/nYour cash balance is:\n\n"+ player.cashBalance +"");
+            player.GetCashBalance();
+            Console.WriteLine("Purchase all your inventory items:\n\nCups\nLemons\nSugar\nIce\n\nRemember to take weather into consideration.\n\nYour cash balance is:\n\n" + player.cashBalance + "");
+            GetInventory();
         }
         public void GetInventory()
         {
             player.CupsPurchase();
+            NewCashBalanceUpdate();
             player.LemonsPurchase();
+            NewCashBalanceUpdate();
             player.SugarPurchase();
+            NewCashBalanceUpdate();
             player.IcePurchase();
+            NewCashBalanceUpdate();
+            RecipeIntroduction();
         }
-        
+
         //Cash Balance Update
         public void NewCashBalanceUpdate()
         {
@@ -139,24 +148,20 @@ namespace LemonadeStand
         public void NewProfitLossUpdate()
         {
             player.GrossProfitOrLoss();
-            Console.WriteLine("Your Gross Profit/Loss is now:\n\n"+ sales.grossProfitOrLoss + "");
+            Console.WriteLine("Your Gross Profit/Loss is now:\n\n" + sales.grossProfitOrLoss + "");
         }
+
         //Recipe set
         //lemons
         //sugar
         //ice cubes
-        public void LemonAdd()
+        public void RecipeIntroduction()
         {
-            player.LemonParts();
+            Console.WriteLine("Set your lemonade pitcher recipe by adding parts of the following:\n\nLemons\nSugar\nIce\n\n");
+            recipe.GetRecipe();
         }
-        public void SugarAdd()
-        {
-            player.SugarParts();
-        }
-        public void IceAdd()
-        {
-            player.IceParts();
-        }
+
+
         //Price set (in cents)
         public void Price()
         {
@@ -164,21 +169,16 @@ namespace LemonadeStand
         }
 
         //sales simulation (customers buy lemonade based on weather and recipe)
-        public void SalesSimulation()
-        {
-            
-        }
-
         //display results (daily cups sold, new money available total)
         public void DailyRun()
         {
-            day.PotentialCustomersGeneration();
-            day.DemandImpactPrice();
-            day.DemandImpactTemp();
-            day.DemandImpactWeatherConditions();
-            day.DemandImpactIce();
-            day.DemandImpactSugar();
-            day.DemandImpactLemons();
+            customer.PotentialCustomersGeneration();
+            customer.DemandImpactPrice();
+            customer.DemandImpactTemp();
+            customer.DemandImpactWeatherConditions();
+            customer.DemandImpactIce();
+            customer.DemandImpactSugar();
+            customer.DemandImpactLemons();
             day.CupCheck();
             day.PitcherCheck();
             day.LemonCheck();
@@ -195,10 +195,25 @@ namespace LemonadeStand
 
         public void GameEndDisplay()
         {
-            Console.WriteLine("Your ending Profits/Losses are:\n\n"+ sales.grossProfitOrLoss + "");
+            Console.WriteLine("Your ending Profits/Losses are:\n\n" + sales.grossProfitOrLoss + "");
+            Console.ReadLine();
+            Console.WriteLine("Would you like to play again press 1");
+            restartOption = Console.ReadLine();
+            void RestartEnd()
+            {
+                switch (restartOption)
+                {
+                    case "1":
+                        new Game();
+                        break;
+                    default:
+                        break;
+
+                }
+
+            }
+
         }
-
-
-
     }
 }
+
