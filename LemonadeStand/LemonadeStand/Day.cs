@@ -109,7 +109,7 @@ namespace LemonadeStand
         {
             sugarUsed = pitchersUsed * player.sugarParts;
             inventory.SugarOnHand(sugarUsed);
-            inventory.sugarCubesOnHand = inventory.iceCubesOnHand - sugarUsed;
+            inventory.sugarCubesOnHand = inventory.sugarCubesOnHand - sugarUsed;
             return inventory.sugarCubesOnHand > 0;
          
         }

@@ -49,7 +49,7 @@ namespace LemonadeStand
                     oneWeek--;
 
                 }
-                if (oneWeek < 1)
+                if (oneWeek <= 1)
                 {
                     GameEndDisplay();
                     
@@ -113,7 +113,8 @@ namespace LemonadeStand
         }
         public void DayStart()
         {
-            Console.WriteLine("" + dayOfWeek + "\n\nThe Forecast calls for:\n" + "" + weather.forecastWeather + "\n\n");
+            Console.WriteLine("\n\n" + dayOfWeek + "\n\nThe Forecast calls for:\n" + "" + weather.forecastWeather + "\n\n");
+            BeginningInventoryUpdate();
             PurchaseInventoryIntro();
         }
         //Inventory Purchases
@@ -121,6 +122,14 @@ namespace LemonadeStand
         //lemons
         //sugar
         //Ice cubes
+        public void BeginningInventoryUpdate()
+        {
+            Console.WriteLine("\n\nInventory Update:\n\nCups: " + inventory.cupsBeginningInventory + "\nIce: " + inventory.iceCubesBeginningInventory + "\nLemons: " + inventory.lemonsBeginningInventory + "\nSugar: " + inventory.sugarCubesBeginningInventory + "");
+        }
+        public void InventoryUpdate()
+        {
+            Console.WriteLine("\n\nCups: " + inventory.cupsOnHand + "\nIce: " + inventory.iceCubesOnHand + "\nLemons: " + inventory.lemonsOnHand + "\nSugar: " + inventory.sugarCubesOnHand + "");
+        }
         public void PurchaseInventoryIntro()
 
         {
@@ -129,8 +138,10 @@ namespace LemonadeStand
                 player.cashBalance = 20;
                 Console.WriteLine("Purchase all your inventory items:\n\nCups\nLemons\nSugar\nIce\n\nRemember to take weather into consideration.\n\nYour cash balance is:\n\n$" + player.cashBalance + "\n\n");
             }
-            
-            Console.WriteLine("Purchase all your inventory items:\n\nCups\nLemons\nSugar\nIce\n\nRemember to take weather into consideration.\n\nYour cash balance is:\n\n$" + player.cashBalance + "\n\n");
+            else
+            {
+                Console.WriteLine("Purchase all your inventory items:\n\nCups\nLemons\nSugar\nIce\n\nRemember to take weather into consideration.\n\nYour cash balance is:\n\n$" + player.cashBalance + "\n\n");
+            }
             GetInventory();
             SetBeginningInventory();
         }
@@ -140,6 +151,11 @@ namespace LemonadeStand
             player.LemonsPurchase();
             player.SugarPurchase();
             player.IcePurchase();
+            inventory.CupsBeginningInventory();
+            inventory.LemonsBeginningInventory();
+            inventory.SugarBeginningInventory();
+            inventory.IceBeginningInventory();
+            BeginningInventoryUpdate();
             NewCashBalanceUpdate();
         }
         public void SetBeginningInventory()
@@ -213,7 +229,7 @@ namespace LemonadeStand
                 switch (restartOption)
                 {
                     case "1":
-                        new Game();
+                        GameIntroduction();
                         break;
                     default:
                         break;

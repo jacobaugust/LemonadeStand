@@ -64,7 +64,7 @@ namespace LemonadeStand
         {
             try
             {
-                cupsBeginningInventory = (0 + (player.cupsPurchased - day.cupsUsed));
+                cupsBeginningInventory = (0 + (player.cupsPurchased - day.cupsUsed) + cupsOnHand);
             }
             catch
             {
