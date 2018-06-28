@@ -35,7 +35,7 @@ namespace LemonadeStand
             }
             catch
             {
-                iceCubesBeginningInventory = 0;
+                iceCubesBeginningInventory = player.iceCubesPurchased;
             }
         }
         public void SugarBeginningInventory()
@@ -46,7 +46,7 @@ namespace LemonadeStand
             }
             catch
             {
-                sugarCubesBeginningInventory = 0;
+                sugarCubesBeginningInventory = player.sugarPurchased;
             }
         }
         public void LemonsBeginningInventory()
@@ -57,7 +57,7 @@ namespace LemonadeStand
             }
             catch
             {
-                lemonsBeginningInventory = 0;
+                lemonsBeginningInventory = player.lemonsPurchased;
             }
         }
         public void CupsBeginningInventory()
@@ -68,25 +68,25 @@ namespace LemonadeStand
             }
             catch
             {
-                lemonsBeginningInventory = 0;
+                cupsBeginningInventory = player.cupsPurchased;
             }
         }
-        public void IceOnHand()
+        public void IceOnHand(int iceCubesUsed)
         {
             iceCubeBagsOnHand = player.iceCubeBagsPurchased - day.bagsOfIceUsed;
             iceCubesOnHand = (iceCubesBeginningInventory + player.iceCubesPurchased) - day.iceCubesUsed;
         }
-        public void LemonOnHand()
+        public void LemonsOnHand(int lemonsUsed)
         {
             lemonsOnHand = (lemonsBeginningInventory + player.lemonsPurchased) - day.lemonsUsed;
         }
-        public void SugarOnHand()
+        public void SugarOnHand(int sugarUsed)
         {
-            sugarCubesOnHand = (sugarCubesBeginningInvetory + player.sugarPurchased) - day.sugarUsed;
+            sugarCubesOnHand = (sugarCubesBeginningInventory + player.sugarPurchased) - day.sugarUsed;
         }
-        public void CupsOnHand()
+        public void CupsOnHand(int cupsUsed)
         {
-            cupsOnHand = (cupsBeginningInventory + player.cupsPurchased) - day.cupsUsed;
+            cupsOnHand = (cupsBeginningInventory + player.cupsPurchased) - cupsUsed;
         }
     }
 

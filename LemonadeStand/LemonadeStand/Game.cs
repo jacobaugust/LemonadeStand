@@ -124,6 +124,7 @@ namespace LemonadeStand
             player.GetCashBalance();
             Console.WriteLine("Purchase all your inventory items:\n\nCups\nLemons\nSugar\nIce\n\nRemember to take weather into consideration.\n\nYour cash balance is:\n\n$" + player.cashBalance + "\n\n");
             GetInventory();
+            SetBeginningInventory();
         }
         public void GetInventory()
         {
@@ -135,6 +136,13 @@ namespace LemonadeStand
             NewCashBalanceUpdate();
             player.IcePurchase();
             NewCashBalanceUpdate();
+        }
+        public void SetBeginningInventory()
+        {
+            inventory.CupsBeginningInventory();
+            inventory.IceBeginningInventory();
+            inventory.LemonsBeginningInventory();
+            inventory.SugarBeginningInventory();
             RecipeIntroduction();
         }
 

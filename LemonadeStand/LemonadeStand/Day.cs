@@ -66,20 +66,22 @@ namespace LemonadeStand
         {
             if (customer.saleGuage > 4.5)
             {
+
                 cupsSold ++;
                 cupsUsed ++;
                 bool hasCups = CupCheck();
                 PitchersUsedCheck();
                 bool hasLemons = LemonCheck();
-                IceCheck();
-                SugarCheck();
-                return hasCups && hasLemons;
+                bool hasIce = IceCheck();
+                bool hasSugar = SugarCheck();
+                return hasCups && hasLemons && hasIce && hasSugar;
             }
             return true;
         }
        
         public bool CupCheck()
         {
+            inventory.CupsOnHand(cupsUsed);
             return inventory.cupsOnHand > 0;
             
         }
@@ -90,6 +92,7 @@ namespace LemonadeStand
         public bool LemonCheck()
         {
             lemonsUsed = pitchersUsed * pitcher.lemonsPerPitcher;
+            inventory.LemonsOnHand(lemonsUsed);
             inventory.lemonsOnHand = inventory.lemonsOnHand - lemonsUsed;
             return inventory.lemonsOnHand > 0;
 
@@ -97,6 +100,7 @@ namespace LemonadeStand
         public bool IceCheck()
         {
             iceCubesUsed = pitchersUsed * pitcher.icePerPitcher;
+            inventory.IceOnHand(iceCubesUsed);
             inventory.iceCubesOnHand = inventory.iceCubesOnHand - iceCubesUsed;
             return inventory.iceCubesOnHand > 0;
            
@@ -104,6 +108,7 @@ namespace LemonadeStand
         public bool SugarCheck()
         {
             sugarUsed = pitchersUsed * pitcher.sugarPerPitcher;
+            inventory.SugarOnHand(sugarUsed);
             inventory.sugarCubesOnHand = inventory.iceCubesOnHand - sugarUsed;
             return inventory.sugarCubesOnHand > 0;
          
