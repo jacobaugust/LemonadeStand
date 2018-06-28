@@ -73,20 +73,19 @@ namespace LemonadeStand
         }
         public void IceOnHand(int iceCubesUsed)
         {
-            iceCubeBagsOnHand = player.iceCubeBagsPurchased - day.bagsOfIceUsed;
-            iceCubesOnHand = (iceCubesBeginningInventory + player.iceCubesPurchased) - day.iceCubesUsed;
+            iceCubesOnHand = (iceCubesBeginningInventory) - iceCubesUsed;
         }
         public void LemonsOnHand(int lemonsUsed)
         {
-            lemonsOnHand = (lemonsBeginningInventory + player.lemonsPurchased) - day.lemonsUsed;
+            lemonsOnHand = (lemonsBeginningInventory) - lemonsUsed;
         }
         public void SugarOnHand(int sugarUsed)
         {
-            sugarCubesOnHand = (sugarCubesBeginningInventory + player.sugarPurchased) - day.sugarUsed;
+            sugarCubesOnHand = (sugarCubesBeginningInventory) - sugarUsed;
         }
         public void CupsOnHand(int cupsUsed)
         {
-            cupsOnHand = (cupsBeginningInventory + player.cupsPurchased) - cupsUsed;
+            cupsOnHand = (cupsBeginningInventory) - cupsUsed;
         }
     }
 
