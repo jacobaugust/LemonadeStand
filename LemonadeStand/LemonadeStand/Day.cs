@@ -20,6 +20,7 @@ namespace LemonadeStand
         public int sugarUsed;
         public int cupsUsed;
         public int pitchersUsed;
+        public int cupsSold;
 
         public Day(Player player, Weather weather, Inventory inventory, Pitcher pitcher)
         {
@@ -27,6 +28,7 @@ namespace LemonadeStand
             this.weather = weather;
             this.inventory = inventory;
             this.pitcher = pitcher;
+
 
         }
         public void PotentialCustomersGeneration()
@@ -36,67 +38,105 @@ namespace LemonadeStand
 
         }
 
-        public void PotentialCustomersListGeneration()
+        public List<Customer> PotentialCustomersListGeneration()
         {
             List<Customer> customers = new List<Customer>();
             for (int i = 0; i < potentialCustomers; i++)
             {
                 customers.Add(new Customer(player, weather));
-                customers[i].DemandImpactPrice(potentialCustomers);
-                customers[i].DemandImpactTemp(potentialCustomers);
-                customers[i].DemandImpactWeatherConditions(potentialCustomers);
-                customers[i].DemandImpactIce(potentialCustomers);
-                customers[i].DemandImpactLemons(potentialCustomers);
-                customers[i].DemandImpactSugar(potentialCustomers);
+                customers[i].DemandImpactPrice();
+                customers[i].DemandImpactTemp();
+                CupSaleCheck();
+                customers[i].DemandImpactWeatherConditions();
+                CupSaleCheck();
+                customers[i].DemandImpactIce();
+                CupSaleCheck();
+                customers[i].DemandImpactLemons();
+                CupSaleCheck();
+                customers[i].DemandImpactSugar();
+                
+            }
+            return customers;
+
+        }
+        public void CupSaleCheck()
+        {
+            if (customer.saleGuage > 4.5)
+            {
+                cupsSold ++;
+                CupCheck();
+                PitcherCheck();
+                LemonCheck();
+                IceCheck();
+                SugarCheck();
+
             }
 
         }
        
         public void CupCheck()
         {
-            cupsUsed = Convert.ToInt32(customer.cupsSold);
-            if (inventory.cupsOnHand <= Convert.ToInt32(customer.cupsSold))
+            inventory.cupsOnHand --;
+            if (inventory.cupsOnHand <= 0)
             {
-                cupsUsed = inventory.cupsOnHand / pitcher.cupsPerPitcher;
-                customer.cupsSold = inventory.cupsOnHand;
+                NewCupsSoldUpdate();
+                NewProfitLossUpdate();
+                NewCashBalanceUpdate();
             }
-            else
-            {
-                cupsUsed = Convert.ToInt32(customer.cupsSold);
-            }
+            
         }
         public void PitcherCheck()
         {
-            pitchersUsed = Convert.ToInt32(customer.cupsSold) / pitcher.cupsPerPitcher;
+             pitchersUsed = 1 + (cupsSold / pitcher.cupsPerPitcher);
         }
         public void LemonCheck()
         {
             lemonsUsed = pitchersUsed * pitcher.lemonsPerPitcher;
-            if(lemonsUsed > inventory.lemonsOnHand)
+            inventory.lemonsOnHand = inventory.lemonsOnHand - lemonsUsed;
+            if (inventory.lemonsOnHand <= 0)
             {
-                pitchersUsed = inventory.lemonsOnHand / pitcher.lemonsPerPitcher;
-                customer.cupsSold = (pitchersUsed * pitcher.cupsPerPitcher);
+                NewCupsSoldUpdate();
+                NewProfitLossUpdate();
+                NewCashBalanceUpdate();
             }
 
         }
         public void IceCheck()
         {
             iceCubesUsed = pitchersUsed * pitcher.icePerPitcher;
-            if (iceCubesUsed > inventory.iceCubesOnHand)
+            inventory.iceCubesOnHand = inventory.iceCubesOnHand - iceCubesUsed;
+            if (inventory.iceCubesOnHand <= 0)
             {
-                pitchersUsed = inventory.iceCubesOnHand / pitcher.icePerPitcher;
-                customer.cupsSold = (pitchersUsed * pitcher.cupsPerPitcher);
+                NewCupsSoldUpdate();
+                NewProfitLossUpdate();
+                NewCashBalanceUpdate();
             }
         }
         public void SugarCheck()
         {
             sugarUsed = pitchersUsed * pitcher.sugarPerPitcher;
-            if (sugarUsed > inventory.sugarCubesOnHand)
+            inventory.sugarCubesOnHand = inventory.iceCubesOnHand - sugarUsed;
+            if (inventory.sugarCubesOnHand >= 0)
             {
-                pitchersUsed = inventory.iceCubesOnHand / pitcher.icePerPitcher;
-                customer.cupsSold = (pitchersUsed * pitcher.cupsPerPitcher);
+                NewCupsSoldUpdate();
+                NewProfitLossUpdate();
+                NewCashBalanceUpdate();
             }
         }
-            
+        public void NewCashBalanceUpdate()
+        {
+            player.GetCashBalance();
+            Console.WriteLine("Your cash balance is now:\n\n$" + player.cashBalance + "");
+        }
+        public void NewProfitLossUpdate()
+        {
+            player.GrossProfitOrLoss();
+            Console.WriteLine("Your Gross Profit/Loss is now:\n\n" + player.grossProfitOrLoss + "");
+        }
+        public void NewCupsSoldUpdate()
+        {
+            Console.WriteLine("" + customer.saleGuage + " cups sold today");
+        }
+
     }
 }

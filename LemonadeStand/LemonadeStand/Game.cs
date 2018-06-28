@@ -138,7 +138,6 @@ namespace LemonadeStand
             RecipeIntroduction();
         }
 
-        //Cash Balance Update
         public void NewCashBalanceUpdate()
         {
             player.GetCashBalance();
@@ -151,8 +150,10 @@ namespace LemonadeStand
         }
         public void NewCupsSoldUpdate()
         {
-            Console.WriteLine(""+ customer.cupsSold +" cups sold today");
+            Console.WriteLine("" + customer.saleGuage + " cups sold today");
         }
+
+
 
         //Recipe set
         //lemons
@@ -175,6 +176,8 @@ namespace LemonadeStand
 
         //sales simulation (customers buy lemonade based on weather and recipe)
         //display results (daily cups sold, new money available total)
+
+        //
         public void DailyRun()
         {
             day.PotentialCustomersGeneration();
@@ -185,6 +188,7 @@ namespace LemonadeStand
             day.IceCheck();
             day.SugarCheck();
             NewCupsSoldUpdate();
+
             NewProfitLossUpdate();
             NewCashBalanceUpdate();
             

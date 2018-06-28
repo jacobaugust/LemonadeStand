@@ -8,123 +8,134 @@ namespace LemonadeStand
 {
     public class Customer
     {
-        public double cupsSold;
+        public double saleGuage;
         Player player;
         Weather weather;
-       
+        int percentChanceToBuy;
+        int saleGauge;
+
 
         public Customer(Player player, Weather weather)
         {
             this.player = player;
             this.weather = weather;
-           
+            Random rnd = new Random();
+            saleGuage = rnd.Next(0, 2);
         }
 
-        
-        public void DemandImpactPrice(double potentialCustomers)
+        public void DetermineIfPurchaseOccurs()
+        {
+
+        }
+
+        public void DemandImpactPrice()
         {
             if (player.lemonadePrice <= 0.10)
             {
-                cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.20));
+                percentChanceToBuy += 25;
+                saleGuage = Convert.ToInt32(saleGuage + 2);
             }
             else if (player.lemonadePrice <= 0.20)
             {
-                cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.15));
+                saleGuage = Convert.ToInt32(saleGuage + 1.5);
             }
             else if (player.lemonadePrice <= 0.30)
             {
-                cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.10));
+                saleGuage = Convert.ToInt32(saleGuage + 1);
             }
             else if (player.lemonadePrice <= 0.40)
             {
-                cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.05));
+                saleGuage = Convert.ToInt32(saleGuage + 0.5);
             }
         }
-        public void DemandImpactTemp(double potentialCustomers)
+        public void DemandImpactTemp()
         {
             if (weather.actualTemperature >= 85)
             {
-                cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.15));
+                saleGuage = Convert.ToInt32(saleGuage + 1.5);
             }
             else if (player.lemonadePrice >= 75)
             {
-                cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.10));
+                saleGuage = Convert.ToInt32(saleGuage + 1);
             }
             else if (player.lemonadePrice >= 65)
             {
-                cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.05));
+                saleGuage = Convert.ToInt32(saleGuage + 0.5));
             }
         }
-        public void DemandImpactWeatherConditions(double potentialCustomers)
+        public void DemandImpactWeatherConditions()
         {
             switch (weather.actualCondition)
             {
                 case "hot":
-                    cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.10));
+                    saleGuage = Convert.ToInt32(saleGuage + 1);
                     break;
                 case "hazy":
-                    cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.10));
+                    saleGuage = Convert.ToInt32(saleGuage + 1);
                     break;
                 case "muggy":
-                    cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.10));
+                    saleGuage = Convert.ToInt32(saleGuage + 1);
                     break;
                 default:
                     break;
             }
 
         }
-        public void DemandImpactIce(double potentialCustomers)
+        public void DemandImpactIce()
         {
             if (player.iceParts >= 6)
             {
-                cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.10));
+                saleGuage = Convert.ToInt32(saleGuage + 1);
             }
             else if (player.lemonadePrice >= 4)
             {
-                cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.15));
+                saleGuage = Convert.ToInt32(saleGuage + 1.5);
             }
             else if (player.lemonadePrice >= 2)
             {
-                cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.10));
+                saleGuage = Convert.ToInt32(saleGuage + 1);
             }
         }
-        public void DemandImpactSugar(double potentialCustomers)
+        public void DemandImpactSugar()
         {
-            if (player.iceParts >= 8)
-            {
-                cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.05));
-            }
-            else if (player.lemonadePrice >= 6)
-            {
-                cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.10));
-            }
-            else if (player.lemonadePrice >= 4)
-            {
-                cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.15));
-            }
-            else if (player.lemonadePrice >= 2)
-            {
-                cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.05));
-            }
+                if (player.iceParts >= 8)
+                {
+                    saleGuage = Convert.ToInt32(saleGuage + 0.5);
+                }
+                else if (player.lemonadePrice >= 6)
+                {
+                    saleGuage = Convert.ToInt32(saleGuage + 1);
+                }
+                else if (player.lemonadePrice >= 4)
+                {
+                    saleGuage = Convert.ToInt32(saleGuage + 1.5);
+                }
+                else if (player.lemonadePrice >= 2)
+                {
+                    saleGuage = Convert.ToInt32(saleGuage + 1.5);
+                }
+         
         }
         public void DemandImpactLemons(double potentialCustomers)
         {
             if (player.iceParts >= 8)
             {
-                cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.05));
+                saleGuage = Convert.ToInt32(saleGuage + 0.5);
             }
             else if (player.lemonadePrice >= 6)
             {
-                cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.15));
+                saleGuage = Convert.ToInt32(saleGuage + 1.5);
             }
             else if (player.lemonadePrice >= 4)
             {
-                cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.10));
+                saleGuage = Convert.ToInt32(saleGuage + 1);
             }
             else if (player.lemonadePrice >= 2)
             {
-                cupsSold = Convert.ToInt32(cupsSold + (potentialCustomers * 0.05));
+                saleGuage = Convert.ToInt32(saleGuage + 0.5);
             }
         }
+           
+        
     }
 }
