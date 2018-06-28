@@ -30,11 +30,13 @@ namespace LemonadeStand
 
         public Player()
         {
-            expenses = new Expenses();
-            sales = new Sales();
+            
+            
             ice = new Ice();
             cash = new Cash();
             recipe = new Recipe();
+            expenses = new Expenses();
+            sales = new Sales();
             
         }
 
@@ -66,13 +68,53 @@ namespace LemonadeStand
             
         }
         //Cash Balance
-        public void GetCashBalance()
+        public void GetCashBalanceInventoryPurchase()
         {
-            expenses.TotalExpenses();
-            sales.TotalRevenue();
             try
             {
-                cashBalance = (cash.balance - expenses.totalExpenses) + (sales.totalRevenue);
+                expenses.TotalExpenses();
+                cashBalance = cashBalance - expenses.totalExpenses;
+            }
+            catch
+            {
+                cashBalance = cash.balance;
+            }
+           
+        }
+        public void GetBeginningCashBalance(int cupsSold)
+        {
+            expenses.TotalExpenses();
+            sales.TotalRevenue(cupsSold, lemonadePrice);
+            try
+            {
+                if (grossProfitOrLoss > 0)
+                {
+                    cashBalance = (cashBalance - expenses.totalExpenses) + (grossProfitOrLoss);
+                }
+                else
+                {
+                    cashBalance = (cash.balance - expenses.totalExpenses);
+                }
+
+            }
+            catch
+            {
+                cashBalance = cash.balance;
+            }
+        }
+
+        public void GetCashBalance(int cupsSold)
+        {
+            expenses.TotalExpenses();
+            sales.TotalRevenue(cupsSold, lemonadePrice);
+            try
+            {
+                if (grossProfitOrLoss > 0)
+                {
+                    cashBalance = (cashBalance) + (grossProfitOrLoss);
+                }
+                
+                
             }
             catch
             {
@@ -108,8 +150,10 @@ namespace LemonadeStand
             Console.WriteLine("How much would you like to charge for your lemonade (enter price as shown i.e. 0.30 for thirty cents)?");
             lemonadePrice = Convert.ToDouble(Console.ReadLine());
         }
-        public void GrossProfitOrLoss()
+        public void GrossProfitOrLoss(int cupsSold)
         {
+            sales.TotalRevenue(cupsSold, lemonadePrice);
+            expenses.TotalExpenses();
             grossProfitOrLoss = sales.totalRevenue - expenses.totalExpenses;
         }
         

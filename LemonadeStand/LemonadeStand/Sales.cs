@@ -17,14 +17,15 @@ namespace LemonadeStand
 
         public Sales()
         {
-            TotalRevenue();
+            
+            
         }
 
-        public void TotalRevenue()
+        public void TotalRevenue(int cupsSold, double lemonadePrice)
         {
             try
             {
-                totalRevenue = customer.saleGuage * player.lemonadePrice;
+                totalRevenue = cupsSold * lemonadePrice;
             }
             catch
             {

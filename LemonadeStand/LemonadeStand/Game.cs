@@ -19,6 +19,7 @@ namespace LemonadeStand
         Pitcher pitcher;
         Day day;
         Customer customer;
+        Cash cash;
         int oneWeek;
         string dayOfWeek;
         string restartOption;
@@ -31,6 +32,7 @@ namespace LemonadeStand
             inventory = new Inventory(player, day);
             pitcher = new Pitcher(player);
             day = new Day(player, weather, inventory, pitcher);
+            cash = new Cash();
             oneWeek = 8;
         }
 
@@ -120,8 +122,14 @@ namespace LemonadeStand
         //sugar
         //Ice cubes
         public void PurchaseInventoryIntro()
+
         {
-            player.GetCashBalance();
+            if (dayOfWeek == "Day One")
+            {
+                player.cashBalance = 20;
+                Console.WriteLine("Purchase all your inventory items:\n\nCups\nLemons\nSugar\nIce\n\nRemember to take weather into consideration.\n\nYour cash balance is:\n\n$" + player.cashBalance + "\n\n");
+            }
+            
             Console.WriteLine("Purchase all your inventory items:\n\nCups\nLemons\nSugar\nIce\n\nRemember to take weather into consideration.\n\nYour cash balance is:\n\n$" + player.cashBalance + "\n\n");
             GetInventory();
             SetBeginningInventory();
@@ -129,11 +137,8 @@ namespace LemonadeStand
         public void GetInventory()
         {
             player.CupsPurchase();
-            NewCashBalanceUpdate();
             player.LemonsPurchase();
-            NewCashBalanceUpdate();
             player.SugarPurchase();
-            NewCashBalanceUpdate();
             player.IcePurchase();
             NewCashBalanceUpdate();
         }
@@ -148,12 +153,12 @@ namespace LemonadeStand
 
         public void NewCashBalanceUpdate()
         {
-            player.GetCashBalance();
+            player.GetCashBalanceInventoryPurchase();
             Console.WriteLine("Your cash balance is now:\n\n$" + player.cashBalance + "");
         }
         public void NewProfitLossUpdate()
         {
-            player.GrossProfitOrLoss();
+            player.GrossProfitOrLoss(day.cupsSold);
             Console.WriteLine("Your Gross Profit/Loss is now:\n\n" + player.grossProfitOrLoss + "");
         }
         public void NewCupsSoldUpdate()

@@ -25,6 +25,7 @@ namespace LemonadeStand
             lemons = new Lemons();
             sugar = new Sugar();
             cup = new Cup();
+            
         }
 
         public void IcePurchases(int iceCubeBagsPurchased)

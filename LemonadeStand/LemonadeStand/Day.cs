@@ -115,17 +115,18 @@ namespace LemonadeStand
         }
         public void NewCashBalanceUpdate()
         {
-            player.GetCashBalance();
+            player.GetCashBalance(cupsSold);
             Console.WriteLine("Your cash balance is now:\n\n$" + player.cashBalance + "");
         }
         public void NewProfitLossUpdate()
         {
-            player.GrossProfitOrLoss();
+
+            player.GrossProfitOrLoss(cupsSold);
             Console.WriteLine("Your Gross Profit/Loss is now:\n\n" + player.grossProfitOrLoss + "");
         }
         public void NewCupsSoldUpdate()
         {
-            Console.WriteLine("" + customer.saleGuage + " cups sold today");
+            Console.WriteLine("" + cupsSold + " cups sold today");
         }
 
     }
