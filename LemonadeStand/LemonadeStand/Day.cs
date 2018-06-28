@@ -50,7 +50,7 @@ namespace LemonadeStand
                 customers[i].DemandImpactIce();
                 customers[i].DemandImpactLemons();
                 customers[i].DemandImpactSugar();
-                bool canStillSell = CupSaleCheck();
+                bool canStillSell = CupSaleCheck(customers[i]);
                 if(!canStillSell)
                 {
                     NewCupsSoldUpdate();
@@ -62,11 +62,12 @@ namespace LemonadeStand
             return customers;
 
         }
-        public bool CupSaleCheck()
+        public bool CupSaleCheck(Customer customer)
         {
             if (customer.saleGuage > 4.5)
             {
                 cupsSold ++;
+                cupsUsed ++;
                 bool hasCups = CupCheck();
                 PitchersUsedCheck();
                 bool hasLemons = LemonCheck();
@@ -79,7 +80,6 @@ namespace LemonadeStand
        
         public bool CupCheck()
         {
-            inventory.cupsOnHand --;
             return inventory.cupsOnHand > 0;
             
         }

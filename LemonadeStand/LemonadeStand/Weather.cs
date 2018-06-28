@@ -27,7 +27,7 @@ namespace LemonadeStand
         public void TemperatureGeneration()
         {
             Random rnd = new Random();
-            forecastTemperature = rnd.Next(55, 99);
+            forecastTemperature = rnd.Next(55, 90);
         }
 
 

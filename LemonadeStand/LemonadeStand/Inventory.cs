@@ -13,6 +13,11 @@ namespace LemonadeStand
         public int sugarCubesOnHand;
         public int lemonsOnHand;
         public int cupsOnHand;
+        public int lemonsBeginningInventory;
+        public int iceCubesBeginningInventory;
+        public int sugarCubesBeginningInventory;
+        public int cupsBeginningInventory;
+
         Player player;
         Day day;
 
@@ -22,22 +27,66 @@ namespace LemonadeStand
             this.day = day;
         }
 
+        public void IceBeginningInventory()
+        {
+            try
+            {
+                iceCubesBeginningInventory = (0 + (player.iceCubesPurchased - day.iceCubesUsed));
+            }
+            catch
+            {
+                iceCubesBeginningInventory = 0;
+            }
+        }
+        public void SugarBeginningInventory()
+        {
+            try
+            {
+                sugarCubesBeginningInventory = (0 + (player.sugarPurchased - day.sugarUsed));
+            }
+            catch
+            {
+                sugarCubesBeginningInventory = 0;
+            }
+        }
+        public void LemonsBeginningInventory()
+        {
+            try
+            {
+                lemonsBeginningInventory = (0 + (player.lemonsPurchased - day.lemonsUsed));
+            }
+            catch
+            {
+                lemonsBeginningInventory = 0;
+            }
+        }
+        public void CupsBeginningInventory()
+        {
+            try
+            {
+                cupsBeginningInventory = (0 + (player.cupsPurchased - day.cupsUsed));
+            }
+            catch
+            {
+                lemonsBeginningInventory = 0;
+            }
+        }
         public void IceOnHand()
         {
             iceCubeBagsOnHand = player.iceCubeBagsPurchased - day.bagsOfIceUsed;
-            iceCubesOnHand = player.iceCubesPurchased - day.iceCubesUsed;
+            iceCubesOnHand = (iceCubesBeginningInventory + player.iceCubesPurchased) - day.iceCubesUsed;
         }
         public void LemonOnHand()
         {
-            lemonsOnHand = player.lemonsPurchased - day.lemonsUsed;
+            lemonsOnHand = (lemonsBeginningInventory + player.lemonsPurchased) - day.lemonsUsed;
         }
         public void SugarOnHand()
         {
-            sugarCubesOnHand = player.sugarPurchased - day.sugarUsed;
+            sugarCubesOnHand = (sugarCubesBeginningInvetory + player.sugarPurchased) - day.sugarUsed;
         }
         public void CupsOnHand()
         {
-            cupsOnHand = player.cupsPurchased - day.cupsUsed;
+            cupsOnHand = (cupsBeginningInventory + player.cupsPurchased) - day.cupsUsed;
         }
     }
 
