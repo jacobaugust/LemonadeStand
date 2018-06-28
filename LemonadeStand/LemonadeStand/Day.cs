@@ -46,82 +46,67 @@ namespace LemonadeStand
                 customers.Add(new Customer(player, weather));
                 customers[i].DemandImpactPrice();
                 customers[i].DemandImpactTemp();
-                CupSaleCheck();
                 customers[i].DemandImpactWeatherConditions();
-                CupSaleCheck();
                 customers[i].DemandImpactIce();
-                CupSaleCheck();
                 customers[i].DemandImpactLemons();
-                CupSaleCheck();
                 customers[i].DemandImpactSugar();
-                
+                bool canStillSell = CupSaleCheck();
+                if(!canStillSell)
+                {
+                    NewCupsSoldUpdate();
+                    NewProfitLossUpdate();
+                    NewCashBalanceUpdate();
+                    break;
+                }
             }
             return customers;
 
         }
-        public void CupSaleCheck()
+        public bool CupSaleCheck()
         {
             if (customer.saleGuage > 4.5)
             {
                 cupsSold ++;
-                CupCheck();
-                PitcherCheck();
-                LemonCheck();
+                bool hasCups = CupCheck();
+                PitchersUsedCheck();
+                bool hasLemons = LemonCheck();
                 IceCheck();
                 SugarCheck();
-
+                return hasCups && hasLemons;
             }
-
+            return true;
         }
        
-        public void CupCheck()
+        public bool CupCheck()
         {
             inventory.cupsOnHand --;
-            if (inventory.cupsOnHand <= 0)
-            {
-                NewCupsSoldUpdate();
-                NewProfitLossUpdate();
-                NewCashBalanceUpdate();
-            }
+            return inventory.cupsOnHand > 0;
             
         }
-        public void PitcherCheck()
+        public void PitchersUsedCheck()
         {
              pitchersUsed = 1 + (cupsSold / pitcher.cupsPerPitcher);
         }
-        public void LemonCheck()
+        public bool LemonCheck()
         {
             lemonsUsed = pitchersUsed * pitcher.lemonsPerPitcher;
             inventory.lemonsOnHand = inventory.lemonsOnHand - lemonsUsed;
-            if (inventory.lemonsOnHand <= 0)
-            {
-                NewCupsSoldUpdate();
-                NewProfitLossUpdate();
-                NewCashBalanceUpdate();
-            }
+            return inventory.lemonsOnHand > 0;
 
         }
-        public void IceCheck()
+        public bool IceCheck()
         {
             iceCubesUsed = pitchersUsed * pitcher.icePerPitcher;
             inventory.iceCubesOnHand = inventory.iceCubesOnHand - iceCubesUsed;
-            if (inventory.iceCubesOnHand <= 0)
-            {
-                NewCupsSoldUpdate();
-                NewProfitLossUpdate();
-                NewCashBalanceUpdate();
-            }
+            return inventory.iceCubesOnHand > 0;
+           
         }
-        public void SugarCheck()
+        public bool SugarCheck()
         {
             sugarUsed = pitchersUsed * pitcher.sugarPerPitcher;
             inventory.sugarCubesOnHand = inventory.iceCubesOnHand - sugarUsed;
-            if (inventory.sugarCubesOnHand >= 0)
-            {
-                NewCupsSoldUpdate();
-                NewProfitLossUpdate();
-                NewCashBalanceUpdate();
-            }
+            return inventory.sugarCubesOnHand > 0;
+         
         }
         public void NewCashBalanceUpdate()
         {

@@ -182,15 +182,7 @@ namespace LemonadeStand
         {
             day.PotentialCustomersGeneration();
             day.PotentialCustomersListGeneration();
-            day.CupCheck();
-            day.PitcherCheck();
-            day.LemonCheck();
-            day.IceCheck();
-            day.SugarCheck();
-            NewCupsSoldUpdate();
-
-            NewProfitLossUpdate();
-            NewCashBalanceUpdate();
+            GameCounter();
             
         }
 

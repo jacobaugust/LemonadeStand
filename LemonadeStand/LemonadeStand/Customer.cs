@@ -116,7 +116,7 @@ namespace LemonadeStand
                 }
          
         }
-        public void DemandImpactLemons(double potentialCustomers)
+        public void DemandImpactLemons()
         {
             if (player.iceParts >= 8)
             {
