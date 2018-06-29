@@ -44,25 +44,53 @@ namespace LemonadeStand
         public void CupsPurchase()
         {
             Console.WriteLine("Cups cost $0.02.\n\nHow many cups would you like to buy?");
-            cupsPurchased = Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                cupsPurchased = Convert.ToInt32(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Please enter a valid number entry.");
+            }
             expenses.CupsPurchases(cupsPurchased);
         }
         public void LemonsPurchase()
         {
             Console.WriteLine("Lemons cost $0.10.\n\nHow many lemons would you like to buy?");
-            lemonsPurchased = Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                lemonsPurchased = Convert.ToInt32(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Please enter a valid number entry.");
+            }
             expenses.LemonPurchases(lemonsPurchased);
         }
         public void SugarPurchase()
         {
             Console.WriteLine("Sugar cubes cost $0.05 a cube.\n\nHow many sugar cubes would you like to buy?");
-            sugarPurchased = Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                sugarPurchased = Convert.ToInt32(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Please enter a valid number entry.");
+            }
             expenses.SugarPurchases(sugarPurchased);
         }
         public void IcePurchase()
         {
             Console.WriteLine("Ice costs $2.00 a bag and each bag contains 150 cubes of ice.\n\nHow many bags of ice would you like to buy?");
-            iceCubeBagsPurchased = Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                iceCubeBagsPurchased = Convert.ToInt32(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Please enter a valid number entry.");
+            }
             expenses.IcePurchases(iceCubeBagsPurchased);
             iceCubesPurchased = iceCubeBagsPurchased * ice.iceCubesInBag;
             
@@ -126,23 +154,51 @@ namespace LemonadeStand
         public void LemonParts()
         {
             Console.WriteLine("How many lemons would you like to use in your pitcher recipe?");
-            lemonParts = Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                lemonParts = Convert.ToInt32(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Please enter a valid number entry.");
+            }
         }
         public void SugarParts()
         {
             Console.WriteLine("How many sugar cubes would you like to use in your pitcher recipe?");
-            sugarParts = Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                sugarParts = Convert.ToInt32(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Please enter a valid number entry.");
+            }
         }
         public void IceParts()
         {
             Console.WriteLine("How many ice cubes would you like to use in your pitcher recipe?");
-            iceParts = Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                iceParts = Convert.ToInt32(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Please enter a valid number entry.");
+            }
         }
         //Pricing Set
         public void PriceSet()
         {
             Console.WriteLine("How much would you like to charge for your lemonade (enter price as shown i.e. 0.30 for thirty cents)?");
-            lemonadePrice = Convert.ToDouble(Console.ReadLine());
+            try
+            {
+                lemonadePrice = Convert.ToDouble(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Please enter a valid number entry.");
+            }
         }
         public void GrossProfitOrLoss(int cupsSold)
         {

@@ -209,7 +209,6 @@ namespace LemonadeStand
         //
         public void DailyRun()
         {
-            Console.WriteLine("" + inventory.cupsBeginningInventory + "");
             day.PotentialCustomersGeneration();
             day.PotentialCustomersListGeneration();
             GameCounter();

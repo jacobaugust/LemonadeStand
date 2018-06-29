@@ -104,7 +104,7 @@ namespace LemonadeStand
             {
                 cupsSold--;
                 cupsUsed--;
-                //inventory.cupsOnHand++;
+                
             }
 
             return inventory.cupsOnHand > 0;
@@ -118,11 +118,11 @@ namespace LemonadeStand
         {
             lemonsUsed = pitchersUsed * player.lemonParts;
             inventory.LemonsOnHand(lemonsUsed);
-            if(lemonsUsed >= inventory.lemonsBeginningInventory)
+            if(lemonsUsed > inventory.lemonsBeginningInventory)
             {
                 cupsSold --;
                 cupsUsed--;
-                //inventory.cupsOnHand++;
+                
             }
             return inventory.lemonsOnHand > player.lemonParts;
 
@@ -131,11 +131,11 @@ namespace LemonadeStand
         {
             iceCubesUsed = pitchersUsed * player.iceParts;
             inventory.IceOnHand(iceCubesUsed);
-            if (iceCubesUsed >= inventory.iceCubesBeginningInventory)
+            if (iceCubesUsed > inventory.iceCubesBeginningInventory)
             {
                 cupsSold--;
                 cupsUsed--;
-                //inventory.cupsOnHand++;
+                
             }
             return inventory.iceCubesOnHand > player.iceParts;
            
@@ -148,7 +148,7 @@ namespace LemonadeStand
             {
                 cupsSold--;
                 cupsUsed--;
-                //inventory.cupsOnHand++;
+                
             }
             return inventory.sugarCubesOnHand > player.sugarParts;
          
