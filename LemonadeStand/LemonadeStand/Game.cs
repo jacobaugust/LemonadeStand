@@ -117,7 +117,10 @@ namespace LemonadeStand
             InventoryUpdate();
             PurchaseInventoryIntro();
         }
-   
+        public void BeginningInventoryUpdate()
+        {
+            Console.WriteLine("\n\nCups: " + inventory.cupsBeginningInventory + "\nIce: " + inventory.iceCubesBeginningInventory + "\nLemons: " + inventory.lemonsBeginningInventory + "\nSugar: " + inventory.sugarCubesBeginningInventory + "");
+        }
         public void InventoryUpdate()
         {
             Console.WriteLine("\n\nCups: " + inventory.cupsOnHand + "\nIce: " + inventory.iceCubesOnHand + "\nLemons: " + inventory.lemonsOnHand + "\nSugar: " + inventory.sugarCubesOnHand + "");
@@ -152,7 +155,7 @@ namespace LemonadeStand
             inventory.LemonsBeginningInventory();
             inventory.SugarBeginningInventory();
             inventory.IceBeginningInventory();
-            InventoryUpdate();
+            BeginningInventoryUpdate();
             NewCashBalanceUpdate();
         }
         public void SetBeginningInventory()

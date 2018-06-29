@@ -53,11 +53,9 @@ namespace LemonadeStand
                 bool canStillSell = CupSaleCheck(customers[i]);
                 if(!canStillSell)
                 {
-                    NewCupsSoldUpdate();
-                    NewProfitLossUpdate();
-                    NewCashBalanceUpdate();
                     break;
                 }
+                
             }
             NewCupsSoldUpdate();
             NewProfitLossUpdate();
@@ -149,8 +147,9 @@ namespace LemonadeStand
         }
         public void NewCashBalanceUpdate()
         {
-            player.GetCashBalance(cupsSold);
-            Console.WriteLine("\n\nYour cash balance is now:\n\n$" + player.cashBalance + "");
+            player.GetBeginningCashBalance(cupsSold);
+            Console.WriteLine("\n\nYour cash balance is now:\n\n$" + player.cashBalance + "\n\nHit Enter to start next day.");
+            Console.ReadLine();
         }
         public void NewProfitLossUpdate()
         {

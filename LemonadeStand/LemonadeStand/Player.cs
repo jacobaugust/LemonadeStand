@@ -87,15 +87,9 @@ namespace LemonadeStand
             sales.TotalRevenue(cupsSold, lemonadePrice);
             try
             {
-                if (grossProfitOrLoss > 0)
                 {
-                    cashBalance = (cashBalance - expenses.totalExpenses) + (grossProfitOrLoss);
+                    cashBalance = cashBalance  + (sales.totalRevenue);
                 }
-                else
-                {
-                    cashBalance = (cash.balance - expenses.totalExpenses);
-                }
-
             }
             catch
             {

@@ -34,6 +34,7 @@ namespace LemonadeStand
                 try
                 {
                     iceCubesBeginningInventory = (player.iceCubesPurchased + iceCubesOnHand);
+                    
                 }
                 catch
                 {
