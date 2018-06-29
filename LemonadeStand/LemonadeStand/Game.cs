@@ -114,22 +114,19 @@ namespace LemonadeStand
         public void DayStart()
         {
             Console.WriteLine("\n\n" + dayOfWeek + "\n\nThe Forecast calls for:\n" + "" + weather.forecastWeather + "\n\n");
-            BeginningInventoryUpdate();
+            InventoryUpdate();
             PurchaseInventoryIntro();
+        }
+   
+        public void InventoryUpdate()
+        {
+            Console.WriteLine("\n\nCups: " + inventory.cupsOnHand + "\nIce: " + inventory.iceCubesOnHand + "\nLemons: " + inventory.lemonsOnHand + "\nSugar: " + inventory.sugarCubesOnHand + "");
         }
         //Inventory Purchases
         //Cups
         //lemons
         //sugar
         //Ice cubes
-        public void BeginningInventoryUpdate()
-        {
-            Console.WriteLine("\n\nInventory Update:\n\nCups: " + inventory.cupsBeginningInventory + "\nIce: " + inventory.iceCubesBeginningInventory + "\nLemons: " + inventory.lemonsBeginningInventory + "\nSugar: " + inventory.sugarCubesBeginningInventory + "");
-        }
-        public void InventoryUpdate()
-        {
-            Console.WriteLine("\n\nCups: " + inventory.cupsOnHand + "\nIce: " + inventory.iceCubesOnHand + "\nLemons: " + inventory.lemonsOnHand + "\nSugar: " + inventory.sugarCubesOnHand + "");
-        }
         public void PurchaseInventoryIntro()
 
         {
@@ -155,7 +152,7 @@ namespace LemonadeStand
             inventory.LemonsBeginningInventory();
             inventory.SugarBeginningInventory();
             inventory.IceBeginningInventory();
-            BeginningInventoryUpdate();
+            InventoryUpdate();
             NewCashBalanceUpdate();
         }
         public void SetBeginningInventory()
@@ -170,7 +167,7 @@ namespace LemonadeStand
         public void NewCashBalanceUpdate()
         {
             player.GetCashBalanceInventoryPurchase();
-            Console.WriteLine("Your cash balance is now:\n\n$" + player.cashBalance + "");
+            Console.WriteLine("\n\nYour cash balance is now:\n\n$" + player.cashBalance + "");
         }
         public void NewProfitLossUpdate()
         {

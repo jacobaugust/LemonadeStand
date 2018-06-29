@@ -59,6 +59,9 @@ namespace LemonadeStand
                     break;
                 }
             }
+            NewCupsSoldUpdate();
+            NewProfitLossUpdate();
+            NewCashBalanceUpdate();
             return customers;
 
         }
@@ -122,7 +125,7 @@ namespace LemonadeStand
         {
             iceCubesUsed = pitchersUsed * player.iceParts;
             inventory.IceOnHand(iceCubesUsed);
-            if (lemonsUsed > inventory.lemonsOnHand)
+            if (iceCubesUsed > inventory.iceCubesOnHand)
             {
                 cupsSold--;
                 cupsUsed--;
@@ -135,7 +138,7 @@ namespace LemonadeStand
         {
             sugarUsed = pitchersUsed * player.sugarParts;
             inventory.SugarOnHand(sugarUsed);
-            if (lemonsUsed > inventory.lemonsOnHand)
+            if (sugarUsed > inventory.sugarCubesOnHand)
             {
                 cupsSold--;
                 cupsUsed--;
