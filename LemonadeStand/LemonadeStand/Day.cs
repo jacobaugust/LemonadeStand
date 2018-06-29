@@ -112,8 +112,10 @@ namespace LemonadeStand
             if(lemonsUsed > inventory.lemonsOnHand)
             {
                 cupsSold --;
+                cupsUsed--;
+                inventory.cupsOnHand++;
             }
-            return inventory.lemonsOnHand > 0;
+            return inventory.lemonsOnHand > player.lemonParts;
 
         }
         public bool IceCheck()
@@ -123,8 +125,10 @@ namespace LemonadeStand
             if (lemonsUsed > inventory.lemonsOnHand)
             {
                 cupsSold--;
+                cupsUsed--;
+                inventory.cupsOnHand++;
             }
-            return inventory.iceCubesOnHand > 0;
+            return inventory.iceCubesOnHand > player.iceParts;
            
         }
         public bool SugarCheck()
@@ -134,8 +138,10 @@ namespace LemonadeStand
             if (lemonsUsed > inventory.lemonsOnHand)
             {
                 cupsSold--;
+                cupsUsed--;
+                inventory.cupsOnHand++;
             }
-            return inventory.sugarCubesOnHand > 0;
+            return inventory.sugarCubesOnHand > player.sugarParts;
          
         }
         public void NewCashBalanceUpdate()

@@ -29,46 +29,59 @@ namespace LemonadeStand
 
         public void IceBeginningInventory()
         {
-            try
+            if(player.iceCubeBagsPurchased > 0)
             {
-                iceCubesBeginningInventory = (player.iceCubesPurchased + iceCubesOnHand);
-            }
-            catch
-            {
-                iceCubesBeginningInventory = player.iceCubesPurchased;
+                try
+                {
+                    iceCubesBeginningInventory = (player.iceCubesPurchased + iceCubesOnHand);
+                }
+                catch
+                {
+                    iceCubesBeginningInventory = player.iceCubesPurchased;
+                }
             }
         }
         public void SugarBeginningInventory()
         {
-            try
+            if (player.sugarPurchased > 0)
             {
-                sugarCubesBeginningInventory = (player.sugarPurchased + sugarCubesOnHand);
+                try
+                {
+                    sugarCubesBeginningInventory = (player.sugarPurchased + sugarCubesOnHand);
+                }
+                catch
+                {
+                    sugarCubesBeginningInventory = player.sugarPurchased;
+                }
             }
-            catch
-            {
-                sugarCubesBeginningInventory = player.sugarPurchased;
-            }
+           
         }
         public void LemonsBeginningInventory()
         {
-            try
+            if (player.lemonsPurchased > 0)
             {
-                lemonsBeginningInventory = (player.lemonsPurchased + lemonsOnHand);
-            }
-            catch
-            {
-                lemonsBeginningInventory = player.lemonsPurchased;
+                try
+                {
+                    lemonsBeginningInventory = (player.lemonsPurchased + lemonsOnHand);
+                }
+                catch
+                {
+                    lemonsBeginningInventory = player.lemonsPurchased;
+                }
             }
         }
         public void CupsBeginningInventory()
         {
-            try
+            if (player.cupsPurchased > 0)
             {
-                cupsBeginningInventory = (player.cupsPurchased + cupsOnHand);
-            }
-            catch
-            {
-                cupsBeginningInventory = player.cupsPurchased;
+                try
+                {
+                    cupsBeginningInventory = (player.cupsPurchased + cupsOnHand);
+                }
+                catch
+                {
+                    cupsBeginningInventory = player.cupsPurchased;
+                }
             }
         }
         public void IceOnHand(int iceCubesUsed)
@@ -77,11 +90,25 @@ namespace LemonadeStand
         }
         public void LemonsOnHand(int lemonsUsed)
         {
-            lemonsOnHand = (lemonsBeginningInventory) - lemonsUsed;
+            if (lemonsBeginningInventory < lemonsUsed)
+            {
+                lemonsOnHand = lemonsBeginningInventory;
+            }
+            else
+            {
+                lemonsOnHand = (lemonsBeginningInventory) - lemonsUsed;
+            }
         }
         public void SugarOnHand(int sugarUsed)
         {
-            sugarCubesOnHand = (sugarCubesBeginningInventory) - sugarUsed;
+            if (sugarCubesBeginningInventory < sugarUsed)
+            {
+                sugarCubesOnHand = 0;
+            }
+            else
+            {
+                sugarCubesOnHand = (sugarCubesBeginningInventory) - sugarUsed;
+            }
         }
         public void CupsOnHand(int cupsUsed)
         {
