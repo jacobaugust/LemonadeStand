@@ -70,10 +70,26 @@ namespace LemonadeStand
                 cupsSold ++;
                 cupsUsed ++;
                 bool hasCups = CupCheck();
+                if(!hasCups)
+                {
+                    return false;
+                }
                 PitchersUsedCheck();
                 bool hasLemons = LemonCheck();
+                if(!hasLemons)
+                {
+                    return false;
+                }
                 bool hasIce = IceCheck();
+                if (!hasIce)
+                {
+                    return false;
+                }
                 bool hasSugar = SugarCheck();
+                if (!hasSugar)
+                {
+                    return false;
+                }
                 return hasCups && hasLemons && hasIce && hasSugar;
             }
             return true;
@@ -93,7 +109,10 @@ namespace LemonadeStand
         {
             lemonsUsed = pitchersUsed * player.lemonParts;
             inventory.LemonsOnHand(lemonsUsed);
-            inventory.lemonsOnHand = inventory.lemonsOnHand - lemonsUsed;
+            if(lemonsUsed > inventory.lemonsOnHand)
+            {
+                cupsSold --;
+            }
             return inventory.lemonsOnHand > 0;
 
         }
@@ -101,7 +120,10 @@ namespace LemonadeStand
         {
             iceCubesUsed = pitchersUsed * player.iceParts;
             inventory.IceOnHand(iceCubesUsed);
-            inventory.iceCubesOnHand = inventory.iceCubesOnHand - iceCubesUsed;
+            if (lemonsUsed > inventory.lemonsOnHand)
+            {
+                cupsSold--;
+            }
             return inventory.iceCubesOnHand > 0;
            
         }
@@ -109,24 +131,27 @@ namespace LemonadeStand
         {
             sugarUsed = pitchersUsed * player.sugarParts;
             inventory.SugarOnHand(sugarUsed);
-            inventory.sugarCubesOnHand = inventory.sugarCubesOnHand - sugarUsed;
+            if (lemonsUsed > inventory.lemonsOnHand)
+            {
+                cupsSold--;
+            }
             return inventory.sugarCubesOnHand > 0;
          
         }
         public void NewCashBalanceUpdate()
         {
             player.GetCashBalance(cupsSold);
-            Console.WriteLine("Your cash balance is now:\n\n$" + player.cashBalance + "");
+            Console.WriteLine("\n\nYour cash balance is now:\n\n$" + player.cashBalance + "");
         }
         public void NewProfitLossUpdate()
         {
 
             player.GrossProfitOrLoss(cupsSold);
-            Console.WriteLine("Your Gross Profit/Loss is now:\n\n" + player.grossProfitOrLoss + "");
+            Console.WriteLine("\n\nYour Gross Profit/Loss is now:\n\n" + player.grossProfitOrLoss + "");
         }
         public void NewCupsSoldUpdate()
         {
-            Console.WriteLine("" + cupsSold + " cups sold today");
+            Console.WriteLine("\n\n" + cupsSold + " cups sold today");
         }
 
     }

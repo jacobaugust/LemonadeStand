@@ -31,7 +31,7 @@ namespace LemonadeStand
         {
             try
             {
-                iceCubesBeginningInventory = (0 + (player.iceCubesPurchased - day.iceCubesUsed));
+                iceCubesBeginningInventory = (player.iceCubesPurchased + iceCubesOnHand);
             }
             catch
             {
@@ -42,7 +42,7 @@ namespace LemonadeStand
         {
             try
             {
-                sugarCubesBeginningInventory = (0 + (player.sugarPurchased - day.sugarUsed));
+                sugarCubesBeginningInventory = (player.sugarPurchased + sugarCubesOnHand);
             }
             catch
             {
@@ -53,7 +53,7 @@ namespace LemonadeStand
         {
             try
             {
-                lemonsBeginningInventory = (0 + (player.lemonsPurchased - day.lemonsUsed));
+                lemonsBeginningInventory = (player.lemonsPurchased + lemonsOnHand);
             }
             catch
             {
@@ -64,7 +64,7 @@ namespace LemonadeStand
         {
             try
             {
-                cupsBeginningInventory = (0 + (player.cupsPurchased - day.cupsUsed) + cupsOnHand);
+                cupsBeginningInventory = (player.cupsPurchased + cupsOnHand);
             }
             catch
             {
