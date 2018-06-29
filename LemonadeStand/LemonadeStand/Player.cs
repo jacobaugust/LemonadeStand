@@ -51,6 +51,7 @@ namespace LemonadeStand
             catch
             {
                 Console.WriteLine("Please enter a valid number entry.");
+                CupsPurchase();
             }
             expenses.CupsPurchases(cupsPurchased);
         }
@@ -64,6 +65,7 @@ namespace LemonadeStand
             catch
             {
                 Console.WriteLine("Please enter a valid number entry.");
+                LemonsPurchase();
             }
             expenses.LemonPurchases(lemonsPurchased);
         }
@@ -77,6 +79,7 @@ namespace LemonadeStand
             catch
             {
                 Console.WriteLine("Please enter a valid number entry.");
+                SugarPurchase();
             }
             expenses.SugarPurchases(sugarPurchased);
         }
@@ -90,6 +93,7 @@ namespace LemonadeStand
             catch
             {
                 Console.WriteLine("Please enter a valid number entry.");
+                IcePurchase();
             }
             expenses.IcePurchases(iceCubeBagsPurchased);
             iceCubesPurchased = iceCubeBagsPurchased * ice.iceCubesInBag;
@@ -161,6 +165,7 @@ namespace LemonadeStand
             catch
             {
                 Console.WriteLine("Please enter a valid number entry.");
+                LemonParts();
             }
         }
         public void SugarParts()
@@ -173,6 +178,7 @@ namespace LemonadeStand
             catch
             {
                 Console.WriteLine("Please enter a valid number entry.");
+                SugarParts();
             }
         }
         public void IceParts()
@@ -185,6 +191,7 @@ namespace LemonadeStand
             catch
             {
                 Console.WriteLine("Please enter a valid number entry.");
+                IceParts();
             }
         }
         //Pricing Set
@@ -198,6 +205,7 @@ namespace LemonadeStand
             catch
             {
                 Console.WriteLine("Please enter a valid number entry.");
+                PriceSet();
             }
         }
         public void GrossProfitOrLoss(int cupsSold)
