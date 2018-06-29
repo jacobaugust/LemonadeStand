@@ -29,47 +29,46 @@ namespace LemonadeStand
 
         public void IceBeginningInventory()
         {
-            if(player.iceCubeBagsPurchased > 0)
+          
+            try
             {
-                try
-                {
-                    iceCubesBeginningInventory = (player.iceCubesPurchased + iceCubesOnHand);
+                iceCubesBeginningInventory = (player.iceCubesPurchased + iceCubesOnHand);
                     
-                }
-                catch
-                {
-                    iceCubesBeginningInventory = player.iceCubesPurchased;
-                }
             }
+            catch
+            {
+                iceCubesBeginningInventory = player.iceCubesPurchased;
+            }
+           
         }
         public void SugarBeginningInventory()
         {
-            if (player.sugarPurchased > 0)
+
+          
+            try
             {
-                try
-                {
-                    sugarCubesBeginningInventory = (player.sugarPurchased + sugarCubesOnHand);
-                }
-                catch
-                {
-                    sugarCubesBeginningInventory = player.sugarPurchased;
-                }
+                sugarCubesBeginningInventory = (player.sugarPurchased + sugarCubesOnHand);
             }
+            catch
+            {
+                sugarCubesBeginningInventory = player.sugarPurchased;
+            }
+            
            
         }
         public void LemonsBeginningInventory()
         {
-            if (player.lemonsPurchased > 0)
+
+           
+            try
             {
-                try
-                {
-                    lemonsBeginningInventory = (player.lemonsPurchased + lemonsOnHand);
-                }
-                catch
-                {
-                    lemonsBeginningInventory = player.lemonsPurchased;
-                }
+                lemonsBeginningInventory = (player.lemonsPurchased + lemonsOnHand);
             }
+            catch
+            {
+                lemonsBeginningInventory = player.lemonsPurchased;
+            }
+           
         }
         public void CupsBeginningInventory()
         {

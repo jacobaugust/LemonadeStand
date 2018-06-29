@@ -41,7 +41,6 @@ namespace LemonadeStand
         public List<Customer> PotentialCustomersListGeneration()
         {
             Console.WriteLine("\n\nThe Actual Weather today was:\n" + "" + weather.actualTemperature + "degrees\n" + weather.actualCondition + "");
-            Console.WriteLine("" + inventory.cupsBeginningInventory + "");
             List<Customer> customers = new List<Customer>();
             for (int i = 0; i < potentialCustomers; i++)
             {
@@ -101,11 +100,11 @@ namespace LemonadeStand
         public bool CupCheck()
         {
             inventory.CupsOnHand(cupsUsed);
-            if (cupsUsed >= inventory.cupsBeginningInventory)
+            if (cupsUsed > inventory.cupsBeginningInventory)
             {
                 cupsSold--;
                 cupsUsed--;
-                inventory.cupsOnHand++;
+                //inventory.cupsOnHand++;
             }
 
             return inventory.cupsOnHand > 0;
@@ -123,7 +122,7 @@ namespace LemonadeStand
             {
                 cupsSold --;
                 cupsUsed--;
-                inventory.cupsOnHand++;
+                //inventory.cupsOnHand++;
             }
             return inventory.lemonsOnHand > player.lemonParts;
 
@@ -136,7 +135,7 @@ namespace LemonadeStand
             {
                 cupsSold--;
                 cupsUsed--;
-                inventory.cupsOnHand++;
+                //inventory.cupsOnHand++;
             }
             return inventory.iceCubesOnHand > player.iceParts;
            
@@ -149,7 +148,7 @@ namespace LemonadeStand
             {
                 cupsSold--;
                 cupsUsed--;
-                inventory.cupsOnHand++;
+                //inventory.cupsOnHand++;
             }
             return inventory.sugarCubesOnHand > player.sugarParts;
          
