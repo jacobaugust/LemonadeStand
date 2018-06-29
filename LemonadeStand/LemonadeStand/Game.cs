@@ -68,7 +68,7 @@ namespace LemonadeStand
         //game introduction/rules
         public void GameIntroduction()
         {
-            Console.WriteLine("Welcome to the Lemonade Stand\n\nA simulation in entrepreneurship. Your goal is to make as much money as possible.\n\nYou have control over all aspects of your lemonade stand. This includes:\n\nPricing\nRecipes\nInventory Management\nPurchasing Supplies\nAnd navigating various weather conditions\n\nPut together the right mix of these factors on the right days and you will maximize your profits!\n\n");
+            Console.WriteLine("Welcome to the Lemonade Stand\n\nA simulation in entrepreneurship. Your goal is to make as much money as possible.\n\nYou have control over many aspects of your lemonade stand. This includes:\n\nPricing\nRecipes\nInventory Management\nAnd navigating various weather conditions\n\nDo your best to keep costs low and demand high, and you will maximize your profits!\n\n");
             Console.ReadLine();
             GameCounter();
         }
@@ -136,7 +136,7 @@ namespace LemonadeStand
             if (dayOfWeek == "Day One")
             {
                 player.cashBalance = 20;
-                Console.WriteLine("Purchase all your inventory items:\n\nCups\nLemons\nSugar\nIce\n\nRemember to take weather into consideration.\n\nYour cash balance is:\n\n$" + player.cashBalance + "\n\n");
+                Console.WriteLine("\n\nPurchase all your inventory items:\n\nCups\nLemons\nSugar\nIce\n\nRemember to take weather into consideration.\n\nYour cash balance is:\n\n$" + player.cashBalance + "\n\n");
             }
             else
             {
@@ -209,6 +209,7 @@ namespace LemonadeStand
         //
         public void DailyRun()
         {
+            Console.WriteLine("" + inventory.cupsBeginningInventory + "");
             day.PotentialCustomersGeneration();
             day.PotentialCustomersListGeneration();
             GameCounter();

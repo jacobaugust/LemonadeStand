@@ -113,6 +113,7 @@ namespace LemonadeStand
         }
         public void CupsOnHand(int cupsUsed)
         {
+
             cupsOnHand = (cupsBeginningInventory) - cupsUsed;
         }
     }
