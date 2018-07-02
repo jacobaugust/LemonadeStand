@@ -66,7 +66,7 @@ namespace LemonadeStand
         }
         public bool CupSaleCheck(Customer customer)
         {
-            if (customer.saleGuage > 4.5)
+            if (customer.saleGuage > 5.5)
             {
 
                 cupsSold ++;
